@@ -4,10 +4,8 @@ import { Form } from "./components/registerForm";
 function App() {
   return (
     <div className="container">
-      <Form>
-        
-      </Form>
-      <h1>Test</h1>
+      <h1 className="my-5">Добро пожаловать в Гараж</h1>
+      <Form/>
     </div>
   );
 }
