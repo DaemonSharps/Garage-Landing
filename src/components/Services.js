@@ -1,8 +1,17 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Accordion, Container } from 'react-bootstrap'
 
-export const Services = () =>(
-    <Container className="pt-3">
-        <h2>ТЕст</h2>
+export const Services = ({serviseList}) =>(
+    <Container className="text-center pt-3">
+        <h2 className="secondaryText-black">Услуги</h2>
+        <Accordion>
+            {serviseList.map(service => (
+                <Accordion.Item eventKey={service.key}>
+                    <Accordion.Header>{service.header}</Accordion.Header>
+                    <Accordion.Body>{service.body}</Accordion.Body>
+                </Accordion.Item>
+            ))}
+            
+        </Accordion>
     </Container>
 )

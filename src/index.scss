@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 body {
   margin: 0;
@@ -18,7 +20,11 @@ code {
 }
 
 .garageImg{
-  max-height: 250px;
+  height: 250px;
+}
+.garageImg img{
+  height: 100%;
+  width: auto;
 }
 
 .homeImg{
