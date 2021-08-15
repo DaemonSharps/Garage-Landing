@@ -28,7 +28,7 @@ export default class SlickSlider extends Component {
                     .map(image =>
                     (
                         <div className="garageImg bg-black">
-                            <img src = {garageImg}/>
+                            <img alt="text" src = {garageImg}/>
                         </div>
                     ))}
                 </Slider>
