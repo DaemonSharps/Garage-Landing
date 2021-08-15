@@ -7,6 +7,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 200px;
 }
 
 code {
@@ -16,4 +19,83 @@ code {
 
 .garageImg{
   max-height: 250px;
+}
+
+.homeImg{
+  background-image: url("../src/img/main.jpg");
+  background-size: cover;
+  min-height: 80vh;
+  width: 100%;
+  display: block;
+}
+
+.navbarsite{
+  z-index: 2;
+  background-color:rgba($color: #0000003b, $alpha: 0.2);
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+%main-text{
+  color: white !important;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.primaryText{
+  @extend %main-text;
+  font-size: 165px;
+  padding: 8px 0px;
+}
+
+.secondaryText{
+  @extend %main-text;
+  font-size: 35px;
+}
+
+.secondaryText-black{
+  @extend %main-text;
+  color: rgb(0, 0, 0) !important;
+  font-size: 25px;
+  padding: 4px 0px;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 180px;
+  line-height: 30px;
+  background-color: rgb(27, 27, 27);
+  margin-top: 40px;
+}
+
+.social-networks{
+  padding-top: 40px;
+  text-align: center;
+}
+
+.social-networks a{
+  font-size: 32px;
+  color: white;
+  padding: 10px;
+  transition: 0.2s;
+}
+
+.social-networks a:hover{
+  text-decoration: none;
+}
+
+.vk:hover{
+  color: rgb(0, 140, 255);
+}
+
+.instagram:hover{
+  color: rgb(255, 142, 113);
+}
+
+.footer span{
+  @extend %main-text;
+  font-size: 20px;
 }
