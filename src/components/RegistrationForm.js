@@ -1,40 +1,107 @@
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import garJpeg from "../img/garage.jpg";
+import { SetCustomer, SetRecord } from "./GarageAPI";
 
-export const RegistrationForm = () =>(
-    <Form className="row my-3 d-flex justify-content-center">
+export class RegistrationForm extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            fisrtName:'',
+            secondName:'',
+            lastName:'',
+            eMail:'',
+            placeNumber:'',
+            date:'',
+            time:'',
+            customer:{}
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event){
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        
+        const form = this;
+            
+          SetCustomer({
+                firstName: this.state.firstName,
+                secondName: this.state.secondName,
+                lastName: this.state.lastName,
+                email: this.state.email
+            })
+          .then(function(response) {
+            console.log('Ответ сервера успешно получен!');
+            console.log(response.data);
+            SetRecord({
+                customerId: +response.data.customer.id,
+                date:form.state.date,
+                time:form.state.time,
+                placeNumber:+form.state.placeNumber,
+                recordStateId:1
+            })
+            .then(function(response) {
+              console.log('Ответ сервера успешно получен!');
+              console.log(response.data);
+              alert(`Запись успешно создана, номер записи ${response.data.id} \nОдновите страницу чтобы ее увидеть.`);
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+    }
+
+    render(){
+        return(
+            <Form className="row my-3 d-flex justify-content-center" onSubmit={this.handleSubmit}>
         <h2 className="text-center mb-3">Запись на приемъ</h2>
-        <Col md="8">
-            <Form.Control type="email" className="mb-2" placeholder="your@mail.com"/>
-            <Form.Control type="text" className="mb-2" placeholder="Имя"/>
-            <Form.Control type="text" className="mb-2" placeholder="Фамилия"/>
-            <Form.Control type="text" className="mb-2" placeholder="Отчество"/>
+        <Col md="10">
+            <Form.Control name = "email" type="email" className="mb-2" placeholder="your@mail.com" onChange={this.handleInputChange}/>
+            <Form.Control name = "firstName" type="text" className="mb-2" placeholder="Имя"  onChange={this.handleInputChange}/>
+            <Form.Control name = "secondName" type="text" className="mb-2" placeholder="Фамилия"  onChange={this.handleInputChange}/>
+            <Form.Control name = "lastName" type="text" className="mb-2" placeholder="Отчество"  onChange={this.handleInputChange}/>
             <Row className="mb-3">
                 <Col md="4">
                     <Form.Label>Дата:</Form.Label>
-                    <Form.Control type="date"/>
+                    <Form.Control name = "date" type="date"  onChange={this.handleInputChange}/>
                 </Col>
                 <Col md="4">
                     <Form.Label>Время:</Form.Label>
-                    <Form.Control type="time"/>
+                    <Form.Control name = "time" type="time"  onChange={this.handleInputChange}/>
                 </Col>
                 <Col md="4">
                     <Form.Label>Место:</Form.Label>
-                    <Form.Select defaultValue="Стоя...">
-                        <option>Стоя...</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <Form.Select name = "placeNumber" defaultValue="Стоя..." onChange={this.handleInputChange}>
+                        <option value ="0" >Стоя...</option>
+                        <option value ="1" >1</option>
+                        <option value ="2" >2</option>
+                        <option value ="3" >3</option>
+                        <option value ="4" >4</option>
+                        <option value ="5" >5</option>
                     </Form.Select>
                 </Col>
             </Row>
-            <Button type="submit" variant="success" >Подтвердит-с</Button>{''}
+            <Button type="submit" variant="success" >Подтвердит-с</Button>
         </Col>
-        <Col md="4">
+        <Col md="2">
             <img className="garageImg img-thumbnail img-fluid" alt="Responsive" src={garJpeg}/>
         </Col>
     </Form>
-)
+        )
+    }
+}
