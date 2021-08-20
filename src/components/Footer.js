@@ -4,7 +4,6 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
 export const Footer = () =>(
-    <footer className="footer">
         <Container className="p-4">
             <Row>
                 <Col md="9">
@@ -24,5 +23,4 @@ export const Footer = () =>(
                 </Col>
             </Row>
         </Container>
-    </footer>
 )

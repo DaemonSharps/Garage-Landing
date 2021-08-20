@@ -11,9 +11,11 @@ export default class SlickSlider extends Component {
             settings : {
                 dots: true,
                 infinite: true,
-                speed: 500,
+                speed: 2000,
                 slidesToShow: 3,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000
             },
             images : images
         }
@@ -21,7 +23,7 @@ export default class SlickSlider extends Component {
     }
     render(){
         return(
-            <Container className="text-center my-5">
+            <Container className="text-center py-5">
             <Col>
                 <Slider {...this.state.settings}>
                     {this.state.images

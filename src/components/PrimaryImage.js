@@ -9,7 +9,7 @@ export const PrimaryImage = () =>(
                         <p className="secondaryText">Добро пожаловать</p>
                         <h1 className="primaryText">GARAGE</h1>
                         <p className="secondaryText">Arseny's estate</p>
-                        <a className="btn  btn-success p-2" href="/register">На прием</a>
+                        <a className="btn  btn-success py-2 px-4" href="/register">На прием</a>
                     </Col>
                 </Row>
             </Container>

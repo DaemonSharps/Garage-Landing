@@ -2,7 +2,7 @@ import React from "react"
 import { Container } from "react-bootstrap"
 
 export const AboutBlock = () =>(
-    <Container className="text-center my-5">
+    <Container className="text-center py-5">
         <h2 className="secondaryText-black">О нас</h2>
         <p>Помѣстье​ 3 м² на протяженіи нѣсколькихъ ​лѣтъ​ является оффиціальной резиденціей ​Васильева​ Арсенія
              Игоревича и его компаніи. Построеное во второй половинѣ ​ХХ​ ​века, оно, является оригинальнымъ сочетаніемъ 

@@ -12,13 +12,38 @@ export const Home = () =>{
     .fill('')
     .map((_,i) => ({index:i}));
 
-    const services = new Array(5)
-    .fill('')
-    .map((_,i) => ({
-        key:i,
-        header:"Заголовок",
-        body:"Описание"
-    }))
+    const services = [
+        {
+            key:0,
+            header:"Вытрезвитель",
+            body:"Описание"
+        },
+        {
+            key:1,
+            header:"Психологическая помощь",
+            body:"Описание"
+        },
+        {
+            key:3,
+            header:"Банкеты",
+            body:"Описание"
+        },
+        {
+            key:4,
+            header:"Совещания",
+            body:"Описание"
+        },
+        {
+            key:5,
+            header:"Музей",
+            body:"Описание"
+        },
+        {
+            key:6,
+            header:"Литургия",
+            body:"Описание"
+        }
+    ]
     return(
         <Fragment>
             <PrimaryImage/>

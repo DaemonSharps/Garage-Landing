@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Container } from 'react-bootstrap'
 
 export const YandexMap = () =>(
-    <Container className="text-center my-4">
+    <Container className="text-center py-5">
         <h3 className="secondaryText-black">Мы на карте</h3>
         <Col className="d-flex" md="12">
             <iframe className="m-auto" title="OurMap" 

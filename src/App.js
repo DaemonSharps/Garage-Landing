@@ -10,7 +10,7 @@ function App() {
   return (
     <Fragment>
     <BrowserRouter>
-    <SiteNavbar/>
+      <SiteNavbar/>
       <Switch>
         <Route path="/" exact component = {Home}/>
         <Route path="/register" component = {Registration} />

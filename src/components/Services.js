@@ -2,7 +2,7 @@ import React from 'react'
 import { Accordion, Container } from 'react-bootstrap'
 
 export const Services = ({serviseList}) =>(
-    <Container className="text-center pt-3">
+    <Container className="text-center pt-5">
         <h2 className="secondaryText-black">Услуги</h2>
         <Accordion>
             {serviseList.map(service => (
