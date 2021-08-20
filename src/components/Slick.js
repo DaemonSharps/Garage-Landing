@@ -29,8 +29,8 @@ export default class SlickSlider extends Component {
                     {this.state.images
                     .map(image =>
                     (
-                        <div className="garageImg bg-black">
-                            <img alt="text" src = {garageImg}/>
+                        <div className="garageImg bg-white text-center">
+                            <img className="m-auto" alt="text" src = {garageImg}/>
                         </div>
                     ))}
                 </Slider>
