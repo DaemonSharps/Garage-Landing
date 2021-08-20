@@ -55,7 +55,8 @@ export class RegistrationForm extends React.Component{
             .then(function(response) {
               console.log('Ответ сервера успешно получен!');
               console.log(response.data);
-              alert(`Запись успешно создана, номер записи ${response.data.id} \nОдновите страницу чтобы ее увидеть.`);
+              const state = response.data.action === "get" ? "обновлена" : "создана";
+              alert(`Запись успешно ${state}, номер записи ${response.data.record.id} \nОдновите страницу чтобы ее увидеть.`);
             })
             .catch(function(error) {
               console.log(error);
