@@ -16,7 +16,8 @@ export class RegistrationForm extends React.Component{
             date:'',
             time:'',
             customer:{},
-            isClickButton : false
+            isClickButton : false,
+            submitText : "Подтвердить"
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +37,7 @@ export class RegistrationForm extends React.Component{
         event.preventDefault();
         
         const form = this;
-        form.setState({isClickButton: true});
+        form.setState({isClickButton: true, submitText:"Загрузка..."});
           SetCustomer({
                 firstName: this.state.firstName,
                 secondName: this.state.secondName,
@@ -59,7 +60,7 @@ export class RegistrationForm extends React.Component{
               const state = response.data.action === "get" ? "обновлена" : "создана";
               alert(`Запись успешно ${state}, номер записи ${response.data.record.id} \nОдновите страницу чтобы ее увидеть.`);
 
-              form.setState({isClickButton: false});
+              form.setState({isClickButton: false, submitText:"Подтвердить"});
             })
             .catch(function(error) {
               console.log(error);
@@ -100,7 +101,7 @@ export class RegistrationForm extends React.Component{
                     </Form.Select>
                 </Col>
             </Row>
-            <Button type="submit" variant="success" disabled ={this.state.isClickButton}>Подтвердит-с</Button>
+            <Button type="submit" variant="success" disabled ={this.state.isClickButton}>{this.state.submitText}</Button>
         </Col>
         <Col md="2">
             <img className="garageImg img-thumbnail img-fluid" alt="Responsive" src={garJpeg}/>
