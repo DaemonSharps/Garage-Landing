@@ -5,7 +5,7 @@ export const Record = ({record}) =>{
 
     const customer = record.customer;
 
-    const fullName = customer.firstName + " " + customer.secondName + " " + customer.lastName;
+    const fullName = customer.secondName + " " + customer.firstName + " " + customer.lastName;
 
     return(
         <Card key={record.id} className="my-2">
