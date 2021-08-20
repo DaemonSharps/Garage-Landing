@@ -22,7 +22,3 @@ export async function SetRecord(params){
 export async function SetCustomer(params){
   return await apiInstance.post('Customers',params);
 }
-
-export default axios.create({
-    baseURL: `https://garagewebapi.somee.com/api/`
-  });
