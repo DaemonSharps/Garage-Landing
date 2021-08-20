@@ -15,7 +15,8 @@ export class RegistrationForm extends React.Component{
             placeNumber:'',
             date:'',
             time:'',
-            customer:{}
+            customer:{},
+            isClickButton : false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +36,7 @@ export class RegistrationForm extends React.Component{
         event.preventDefault();
         
         const form = this;
-            
+        form.setState({isClickButton: true});
           SetCustomer({
                 firstName: this.state.firstName,
                 secondName: this.state.secondName,
@@ -57,6 +58,8 @@ export class RegistrationForm extends React.Component{
               console.log(response.data);
               const state = response.data.action === "get" ? "обновлена" : "создана";
               alert(`Запись успешно ${state}, номер записи ${response.data.record.id} \nОдновите страницу чтобы ее увидеть.`);
+
+              form.setState({isClickButton: false});
             })
             .catch(function(error) {
               console.log(error);
@@ -97,7 +100,7 @@ export class RegistrationForm extends React.Component{
                     </Form.Select>
                 </Col>
             </Row>
-            <Button type="submit" variant="success" >Подтвердит-с</Button>
+            <Button type="submit" variant="success" disabled ={this.state.isClickButton}>Подтвердит-с</Button>
         </Col>
         <Col md="2">
             <img className="garageImg img-thumbnail img-fluid" alt="Responsive" src={garJpeg}/>
