@@ -69,7 +69,7 @@ export class RegistrationForm extends React.Component{
     render(){
         return(
             <Form className="row my-3 d-flex justify-content-center" onSubmit={this.handleSubmit}>
-        <h2 className="text-center mb-3">Запись на приемъ</h2>
+        <h2 className="text-center mb-3 secondaryText-black">Запись на приемъ</h2>
         <Col md="10">
             <Form.Control name = "email" type="email" className="mb-2" placeholder="your@mail.com" onChange={this.handleInputChange}/>
             <Form.Control name = "firstName" type="text" className="mb-2" placeholder="Имя"  onChange={this.handleInputChange}/>
