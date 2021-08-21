@@ -15,8 +15,9 @@ body {
   min-height: 100vh;
   position: relative;
   padding-bottom: 180px;
-  background-size: 30%;
-  background-image: url("/img/paper-BG.jpg");
+  background-repeat: repeat-y, repeat;
+  background-position: 50% 0, 50% 564px;
+  background-image: url("/img/bg-bottom-repeat.jpg");
 }
 
 code {
@@ -33,7 +34,7 @@ code {
 }
 
 .homeImg{
-  background-image: url("../src/img/main.png");
+  background-image: url("../src/img/main-2.png");
   background-size: cover;
   min-height: 80vh;
   width: 100%;
@@ -81,6 +82,20 @@ code {
   background-color: rgb(27, 27, 27);
 }
 
+@include media-breakpoint-down(md) {
+  .footer {
+    height: 300px;
+  }
+  body{
+    padding-bottom: 300px;
+  }
+  .primaryText{
+    font-size: 65px;
+  }
+  .secondaryText{
+    font-size: 30px;
+  }
+}
 .social-networks{
   padding-top: 40px;
   text-align: center;

@@ -7,9 +7,9 @@ export const PrimaryImage = () =>(
                 <Row className="my-auto justify-content-center">
                     <Col lg="9" className="text-center">
                             <p className="secondaryText">Добро пожаловать</p>
-                            <h1 className="primaryText">Гараж</h1>
-                            <p className="secondaryText">Поместье арсения</p>
-                            <a className="btn btn-dark py-2 px-4" href="/register">На прием</a>
+                            <h1 className="primaryText">Гаражъ</h1>
+                            <p className="secondaryText">Помiстье арсения</p>
+                            <a className="btn btn-dark py-2 px-4" href="/register">На прiмъ</a>
                     </Col>
                 </Row>
             </Container>
