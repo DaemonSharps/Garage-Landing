@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import garJpeg from "../img/garage.jpg";
 import { SetCustomer, SetRecord } from "./GarageAPI";
+import { PageSection } from "./PageSection";
 
 export class RegistrationForm extends React.Component{
 
@@ -73,25 +74,26 @@ export class RegistrationForm extends React.Component{
 
     render(){
         return(
+            <PageSection>
             <Form className="row my-3 d-flex justify-content-center pt-5" onSubmit={this.handleSubmit}>
-        <h2 className="text-center mb-3 secondaryText-black">Запись на приемъ</h2>
-        <Col md="10">
-            <Form.Control name = "email" type="email" className="mb-2" placeholder="your@mail.com" onChange={this.handleInputChange}/>
-            <Form.Control name = "firstName" type="text" className="mb-2" placeholder="Имя"  onChange={this.handleInputChange}/>
-            <Form.Control name = "secondName" type="text" className="mb-2" placeholder="Фамилия"  onChange={this.handleInputChange}/>
-            <Form.Control name = "lastName" type="text" className="mb-2" placeholder="Отчество"  onChange={this.handleInputChange}/>
+        <h2 className="headerText"><div>Запись на приемъ</div></h2>
+        <Col md="10 text-start">
+            <Form.Control name = "email" type="email" className="mb-2 g-text-small" placeholder="your@mail.com" onChange={this.handleInputChange}/>
+            <Form.Control name = "firstName" type="text" className="mb-2 g-text-small" placeholder="Имя"  onChange={this.handleInputChange}/>
+            <Form.Control name = "secondName" type="text" className="mb-2 g-text-small" placeholder="Фамилия"  onChange={this.handleInputChange}/>
+            <Form.Control name = "lastName" type="text" className="mb-2 g-text-small" placeholder="Отчество"  onChange={this.handleInputChange}/>
             <Row className="mb-3">
                 <Col md="4">
-                    <Form.Label>Дата:</Form.Label>
-                    <Form.Control name = "date" type="date"  onChange={this.handleInputChange}/>
+                    <Form.Label className="g-text-small">Дата:</Form.Label>
+                    <Form.Control className="g-text-small" name = "date" type="date"  onChange={this.handleInputChange}/>
                 </Col>
                 <Col md="4">
-                    <Form.Label>Время:</Form.Label>
-                    <Form.Control name = "time" type="time"  onChange={this.handleInputChange}/>
+                    <Form.Label className="g-text-small">Время:</Form.Label>
+                    <Form.Control className="g-text-small" name = "time" type="time"  onChange={this.handleInputChange}/>
                 </Col>
                 <Col md="4">
-                    <Form.Label>Место:</Form.Label>
-                    <Form.Select name = "placeNumber" defaultValue="Стоя..." onChange={this.handleInputChange}>
+                    <Form.Label className="g-text-small">Место:</Form.Label>
+                    <Form.Select className="g-text-small" name = "placeNumber" defaultValue="Стоя..." onChange={this.handleInputChange}>
                         <option value ="0" >Стоя...</option>
                         <option value ="1" >1</option>
                         <option value ="2" >2</option>
@@ -101,12 +103,13 @@ export class RegistrationForm extends React.Component{
                     </Form.Select>
                 </Col>
             </Row>
-            <Button type="submit" variant="success" disabled ={this.state.isClickButton}>{this.state.submitText}</Button>
+            <Button type="submit" variant="none" className="g-btn-brown-dark g-btn-text" disabled ={this.state.isClickButton}>{this.state.submitText}</Button>
         </Col>
         <Col md="2">
             <img className="garageImg img-thumbnail img-fluid" alt="Responsive" src={garJpeg}/>
         </Col>
     </Form>
+    </PageSection>
         )
     }
 }

@@ -9,10 +9,10 @@ export const Record = ({record}) =>{
 
     return(
         <Card key={record.id} className="my-2">
-            <Card.Header>
+            <Card.Header className="g-text-small">
                 {fullName}
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="g-text-small">
                 <p>Место: {record.placeNumber}  Время: {record.time + " " + record.date.substr(0,10)}</p>
             </Card.Body>
         </Card>

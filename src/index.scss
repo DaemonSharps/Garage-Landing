@@ -1,11 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
-
-@font-face {
-  font-family:'Imperial-Font' ;
-  src:  url("/img/Izvestija.ttf")  format('truetype');
-}
+@import "/src/css/footer.scss";
+@import "/src/css/font.scss";
+@import "/src/css/images.scss";
+@import "/src/css/navbar.scss";
+@import "/src/css/text.scss";
+@import "/src/css/buttons.scss";
+@import "/src/css/sections.scss";
 
 body {
   margin: 0;
@@ -20,134 +22,10 @@ body {
   background-image: url("/img/bg-bottom-repeat.jpg");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.garageImg{
-  height: 250px;
-}
-.garageImg img{
-  height: 100%;
-  width: auto;
-}
-
-.homeImg{
-  background-image: url("../src/img/main-2.png");
-  background-size: cover;
-  min-height: 80vh;
-  width: 100%;
-  display: block;
-}
-
-.navbarsite{
-  z-index: 2;
-  background-color:rgba($color: #0000003b, $alpha: 0.2);
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-%main-text{
-  color: white !important;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-}
-
-.primaryText{
-  @extend %main-text;
-  font-size: 165px;
-  padding: 8px 0px;
-}
-
-.secondaryText{
-  @extend %main-text;
-  font-size: 35px;
-}
-
-.secondaryText-black{
-  @extend %main-text;
-  color: rgb(0, 0, 0) !important;
-  font-size: 25px;
-  padding: 4px 0px;
-}
-
-.footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 180px;
-  line-height: 30px;
-  background-color: rgb(27, 27, 27);
-}
-
 @include media-breakpoint-down(md) {
-  .footer {
-    height: 300px;
-  }
   body{
     padding-bottom: 300px;
   }
-  .primaryText{
-    font-size: 65px;
-  }
-  .secondaryText{
-    font-size: 30px;
-  }
-}
-.social-networks{
-  padding-top: 40px;
-  text-align: center;
 }
 
-.social-networks a{
-  font-size: 32px;
-  color: white;
-  padding: 10px;
-  transition: 0.2s;
-}
 
-.social-networks a:hover{
-  text-decoration: none;
-}
-
-.vk:hover{
-  color: rgb(0, 140, 255);
-}
-
-.instagram:hover{
-  color: rgb(255, 142, 113);
-}
-
-.footer span{
-  @extend %main-text;
-  font-size: 20px;
-}
-
-.headerText{
-  background-color: rgb(44, 44, 44);
-  width: fit-content;
-  position: relative;
-  margin: auto;
-}
-.headerText div{
-
-  @extend %main-text;
-  font-family: Imperial-Font;
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 40px;
-}
-
-.headerText::after{
-  content: '';
-  position: absolute;
-  border-radius: 50px;
-  height: calc(100% - 10px);
-  width: calc(100% + 20px);
-  top: 5px;
-  left: -10px;
-  background-color: rgb(44, 44, 44);
-  z-index: -1;
-}

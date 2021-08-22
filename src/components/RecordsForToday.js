@@ -1,6 +1,7 @@
 import React from 'react'
-import { Col, Container } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { GetRecords } from './GarageAPI';
+import { PageSection } from './PageSection';
 import { Record } from './Record';
 
 
@@ -25,14 +26,14 @@ export class RecordsForToday extends React.Component{
 
     render(){
         return(
-            <Container className="d-flex justify-content-center">
-                <Col md="9">
-                <h2 className="secondaryText-black">Сегодня придут</h2>
+            <PageSection>
+                <Col md="12">
+                <h2 className="headerText"><div>Сегодня придут</div></h2>
                     {this.state.recordList.filter(record => record.recordStateId === 1).map(rec => (
                         <Record record = {rec}/>
                     ))}
                 </Col>
-            </Container>
+            </PageSection>
         )
     }
     

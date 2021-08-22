@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Col, Container } from "react-bootstrap";
+import { Col} from "react-bootstrap";
 import Slider from "react-slick";
 import garageImg from "../img/arseny.jpg";
+import { PageSection } from "./PageSection";
 
 export default class SlickSlider extends Component {
 
@@ -24,7 +25,7 @@ export default class SlickSlider extends Component {
     }
     render(){
         return(
-            <Container className="text-center py-5">
+            <PageSection>
             <Col>
                 <Slider {...this.state.settings}>
                     {this.state.images
@@ -36,7 +37,7 @@ export default class SlickSlider extends Component {
                     ))}
                 </Slider>
             </Col>
-        </Container>
+        </PageSection>
         )
         
     }

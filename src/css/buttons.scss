@@ -1,0 +1,48 @@
+@import "site-colors.scss";
+
+%btn-text{
+    font-size: 15px;
+
+}
+%text-light{
+    color: $brown-light;
+}
+%text-dark{
+    color: $brown-dark;
+}
+%border{
+    border: solid 2px;
+}
+%border-light{
+    @extend %border;
+    border-color: $brown-light;
+}
+%border-dark{
+    @extend %border;
+    border-color: $brown-dark;
+}
+
+.g-btn-brown-light{
+    @extend %border-light;
+    @extend %text-light;
+    background-color: $brown-dark;
+    
+}
+
+.g-btn-brown-light:hover{
+    @extend %border-dark;
+    @extend %text-dark;
+    background-color: $brown-light;
+}
+
+.g-btn-brown-dark{
+    @extend %border-dark;
+    @extend %text-dark;
+    background-color: $brown-light;
+}
+
+.g-btn-brown-dark:hover{
+    @extend %border-light;
+    @extend %text-light;
+    background-color: $brown-dark;
+}

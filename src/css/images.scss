@@ -1,0 +1,15 @@
+.garageImg{
+    height: 250px;
+}
+.garageImg img{
+    height: 100%;
+    width: auto;
+}
+  
+.homeImg{
+    background-image: url("../img/main-2.png");
+    background-size: cover;
+    min-height: 80vh;
+    width: 100%;
+    display: block;
+}
