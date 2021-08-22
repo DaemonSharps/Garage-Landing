@@ -5,38 +5,38 @@
     height: 180px;
     line-height: 30px;
     background-color: rgb(27, 27, 27);
-  }
+}
 
-  .social-networks{
+.social-networks{
     padding-top: 40px;
     text-align: center;
-  }
+}
   
-  .social-networks a{
+.social-networks a{
     font-size: 32px;
     color: white;
     padding: 10px;
     transition: 0.2s;
-  }
+}
   
-  .social-networks a:hover{
+.social-networks a:hover{
     text-decoration: none;
-  }
+}
   
-  .vk:hover{
+.vk:hover{
     color: rgb(0, 140, 255);
-  }
+}
   
-  .instagram:hover{
+.instagram:hover{
     color: rgb(255, 142, 113);
-  }
+}
   
-  .footer span{
+.footer span{
     @extend %main-text;
     font-size: 20px;
-  }
+}
 
-  @include media-breakpoint-down(md) {
+@include media-breakpoint-down(md) {
     .footer {
       height: 300px;
     }
