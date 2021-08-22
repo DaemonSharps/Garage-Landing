@@ -3,8 +3,8 @@ import { Accordion} from 'react-bootstrap'
 import { PageSection } from './PageSection'
 
 export const Services = ({serviseList}) =>(
-    <PageSection>
-        <h2 className="headerText"><div>Услуги</div></h2>
+    <PageSection className="section-bg-image">
+        <h2 className="headerText-light"><div>Услуги</div></h2>
         <Accordion>
             {serviseList.map(service => (
                 <Accordion.Item eventKey={service.key}>
