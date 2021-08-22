@@ -14,7 +14,6 @@
     height: 100%;
     margin: auto;
 }
-  
 .homeImg{
     background-image: url("../img/main-2.png");
     background-size: cover;
@@ -23,3 +22,9 @@
     display: block;
     box-shadow: 0 0px 20px #000000;
 }
+
+@include media-breakpoint-down(md) {
+    .homeImg{
+        background-image: url("../img/main-2-md.png"); 
+    }
+  }
