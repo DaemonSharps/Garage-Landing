@@ -11,5 +11,4 @@ export class PageSection extends React.Component{
             </section>
         )
     }
-    
 }

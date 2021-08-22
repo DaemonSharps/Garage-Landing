@@ -16,9 +16,6 @@ export const Home = () =>{
         img,
         img,
         img,
-        img,
-        img,
-        img,
         img
     ]
 
