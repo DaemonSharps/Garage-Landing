@@ -1,9 +1,18 @@
 .garageImg{
-    height: 350px;
+    height: 300px;
 }
 .garageImg img{
     height: 100%;
     width: auto;
+}
+
+.garageImg-small{
+    height: 120px;
+}
+
+.garageImg-small img{
+    height: 100%;
+    margin: auto;
 }
   
 .homeImg{
