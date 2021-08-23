@@ -9,8 +9,8 @@ import { Registration } from "./pages/Registration";
 function App() {
   return (
     <Fragment>
-    <BrowserRouter>
       <SiteNavbar/>
+    <BrowserRouter>
       <Switch>
         <Route path="/" exact component = {Home}/>
         <Route path="/register" component = {Registration} />

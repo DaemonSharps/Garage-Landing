@@ -4,20 +4,9 @@ import { AboutBlock } from '../components/AboutBlock'
 import { YandexMap } from '../components/MapYandex'
 import { PrimaryImage } from '../components/PrimaryImage'
 import { Services } from '../components/Services'
-import SlickSlider from '../components/Slick'
-import img from '../img/arseny.jpg';
+import SlickSlider from '../components/SlickSlider'
 
 export const Home = () =>{
-    
-    const images = [
-        img,
-        img,
-        img,
-        img,
-        img,
-        img,
-        img
-    ]
 
     const services = [
         {
@@ -56,7 +45,7 @@ export const Home = () =>{
             <PrimaryImage/>
             <AboutBlock/>
             <Services serviseList = {services}/>
-            <SlickSlider images = {images}/>
+            <SlickSlider/>
             <YandexMap/>
         </Fragment>
     )

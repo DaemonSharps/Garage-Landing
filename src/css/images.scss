@@ -1,19 +1,5 @@
-.garageImg{
-    height: 300px;
-}
-.garageImg img{
-    height: 100%;
-    width: auto;
-}
+@import "site-colors.scss";
 
-.garageImg-small{
-    height: 120px;
-}
-
-.garageImg-small img{
-    height: 100%;
-    margin: auto;
-}
 .homeImg{
     background-image: url("../img/main-2.png");
     background-size: cover;
@@ -28,3 +14,23 @@
         background-image: url("../img/main-2-md.png"); 
     }
   }
+
+.slick-slide{
+    padding: 0 10px;
+    transition: .5s ease-in-out;
+    opacity: 0.8;
+    transform: scale(0.8);
+    img{
+        border: $brown solid 8px;
+        border-style: double;
+    }
+}
+
+.slick-center{
+    opacity: 1;
+    transform: scale(0.95);
+}
+
+.slick-slide{
+    min-height: 200px;
+}
