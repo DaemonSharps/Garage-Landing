@@ -5,22 +5,26 @@
     height: 180px;
     line-height: 30px;
     background-color: rgb(27, 27, 27);
+
+    span{
+        @extend %main-text;
+        font-size: 20px;
+    }
 }
 
 .social-networks{
     padding-top: 40px;
     text-align: center;
-}
-  
-.social-networks a{
-    font-size: 32px;
-    color: white;
-    padding: 10px;
-    transition: 0.2s;
-}
-  
-.social-networks a:hover{
-    text-decoration: none;
+    a{
+        font-size: 32px;
+        color: white;
+        padding: 10px;
+        transition: 0.2s;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
 }
   
 .vk:hover{
@@ -29,11 +33,6 @@
   
 .instagram:hover{
     color: rgb(255, 142, 113);
-}
-  
-.footer span{
-    @extend %main-text;
-    font-size: 20px;
 }
 
 @include media-breakpoint-down(md) {

@@ -1,48 +1,45 @@
 @import "site-colors.scss";
 
-%btn-text{
-    font-size: 15px;
-
-}
-%text-light{
-    color: $brown-light;
-}
-%text-dark{
-    color: $brown-dark;
-}
-%border{
-    border: solid 2px;
-}
-%border-light{
-    @extend %border;
-    border-color: $brown-light;
-}
-%border-dark{
-    @extend %border;
-    border-color: $brown-dark;
+@function getColor($threme){
+    @if($threme == dark){
+        @return $brown-dark;
+    }
+    @if ($threme == light) {
+        @return $brown-light;
+    }
 }
 
-.g-btn-brown-light{
-    @extend %border-light;
-    @extend %text-light;
-    background-color: $brown-dark;
-    
+@function invertTreme($threme){
+    @if($threme == dark){
+        @return light;
+    }
+    @if ($threme == light) {
+        @return dark;
+    }
 }
 
-.g-btn-brown-light:hover{
-    @extend %border-dark;
-    @extend %text-dark;
-    background-color: $brown-light;
-}
+@each $threme in dark, light {
+    %text-#{$threme}{
+        font-size: 15px;
+        color: getColor($threme);
+    }
 
-.g-btn-brown-dark{
-    @extend %border-dark;
-    @extend %text-dark;
-    background-color: $brown-light;
-}
+    %border-#{$threme}{
+        border: solid 2px;
+        border-color: getColor($threme);
+    }
+    .g-btn-brown-#{$threme}{
+        @extend %border-#{$threme};
+        @extend %text-#{$threme};
+        background-color: getColor(invertTreme($threme));
 
-.g-btn-brown-dark:hover{
-    @extend %border-light;
-    @extend %text-light;
-    background-color: $brown-dark;
+        &:hover{
+            @extend %border-#{invertTreme($threme)};
+            @extend %text-#{invertTreme($threme)};
+            background-color: getColor($threme);
+        }
+        &:focus{
+            box-shadow: 0 0 0 0.25rem getColor(invertTreme($threme));
+        }
+    }
 }
