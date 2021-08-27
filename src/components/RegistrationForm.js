@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import garJpeg from "../img/garage.jpg";
+import garJpeg from "../img/places.webp";
 import { PageSection } from "./PageSection";
 import { recordsContext } from "../context/Records/recordsContext";
 

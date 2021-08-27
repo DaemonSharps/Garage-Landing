@@ -3,13 +3,13 @@
 }
 
 .section-bg-image{
-    background-image: url("/img/bg-2-1.png");
+    background-image: url("/img/bg-2.webp");
     box-shadow: 0 0 20px 0 black;
     background-size: cover;
 }
 
 @include media-breakpoint-down(md) {
     .section-bg-image{
-        background-image: url("/img/bg-2-md.png");
+        background-image: url("/img/bg-2-md.webp");
     }
   }

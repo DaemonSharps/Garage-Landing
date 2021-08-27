@@ -1,7 +1,7 @@
 @import "site-colors.scss";
 
 .homeImg{
-    background-image: url("../img/main-2.png");
+    background-image: url("../img/mainImage.webp");
     background-size: cover;
     min-height: 80vh;
     width: 100%;
@@ -11,7 +11,7 @@
 
 @include media-breakpoint-down(md) {
     .homeImg{
-        background-image: url("../img/main-2-md.png"); 
+        background-image: url("../img/mainImage-md.webp"); 
     }
   }
 
