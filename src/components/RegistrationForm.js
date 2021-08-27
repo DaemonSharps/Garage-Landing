@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import garJpeg from "../img/garage.jpg";
-import { SetCustomer, SetRecord } from "../common/GarageAPI";
 import { PageSection } from "./PageSection";
 import { recordsContext } from "../context/Records/recordsContext";
 
@@ -20,7 +19,7 @@ export class RegistrationForm extends React.Component{
             date:'',
             time:'',
             customer:{},
-            isClickButton : false,
+            submitDisabled : false,
             submitText : "Подтвердить"
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,38 +40,23 @@ export class RegistrationForm extends React.Component{
         event.preventDefault();
         
         const form = this;
-        form.setState({isClickButton: true, submitText:"Загрузка..."});
-          SetCustomer({
-                firstName: this.state.firstName,
-                secondName: this.state.secondName,
-                lastName: this.state.lastName,
-                email: this.state.email
-            })
-          .then(function(response) {
-            console.log('Ответ сервера успешно получен!');
-            console.log(response.data);
-            SetRecord({
-                customerId: +response.data.customer.id,
-                date:form.state.date,
-                time:form.state.time,
-                placeNumber:+form.state.placeNumber,
-                recordStateId:1
-            })
-            .then(function(response) {
-              console.log('Ответ сервера успешно получен!');
-              console.log(response.data);
-              const state = response.data.action === "get" ? "обновлена" : "создана";
-              alert(`Запись успешно ${state}, номер записи ${response.data.record.id} \nОдновите страницу чтобы ее увидеть.`);
+        form.setState({submitDisabled: true, submitText:"Загрузка..."});
+          
+        form.context.setRecord(
+        {
+            date:form.state.date,
+            time:form.state.time,
+            placeNumber:+form.state.placeNumber
+        },
+        {
+            firstName: this.state.firstName,
+            secondName: this.state.secondName,
+            lastName: this.state.lastName,
+            email: this.state.email
+        });
 
-              form.setState({isClickButton: false, submitText:"Подтвердить"});
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+        form.setState({submitDisabled: false, submitText:"Подтвердить"});
+          
     }
 
     render(){
@@ -116,7 +100,7 @@ export class RegistrationForm extends React.Component{
                 type="submit" 
                 variant="none" 
                 className="g-btn-brown-dark g-btn-text" 
-                disabled = {this.state.isClickButton}
+                disabled = {this.state.submitDisabled}
                 >
                     {this.state.submitText}
                 </Button>

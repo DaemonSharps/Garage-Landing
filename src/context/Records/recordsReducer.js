@@ -1,11 +1,11 @@
-import { GET_RECORDS, SHOW_LOADER } from "./actionTypes";
+import { UPDATE_RECORDS, SHOW_LOADER } from "./actionTypes";
 
 const handlers = {
-    [GET_RECORDS]: (state, { payload }) => {
+    [UPDATE_RECORDS]: (state, { payload }) => {
 
         const count = payload.length || 0;
         const nonFreePlaces = payload.map(record => record.placeNumber);
-        const freePlaces = state.freePlaces.filter(place => !nonFreePlaces.includes(place));
+        const freePlaces = [1,2,3,4,5].filter(place => !nonFreePlaces.includes(place));
         return({...state,
             recordsToday: payload,
             freePlaces: freePlaces,

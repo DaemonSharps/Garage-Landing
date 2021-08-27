@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-import { GetRecords } from '../../common/GarageAPI';
+import { GetRecords, SetRecord, SetCustomer } from '../../common/GarageAPI';
 import { getLocaleISOString } from '../../common/helpers'
-import { GET_RECORDS, SHOW_LOADER } from './actionTypes'
+import { UPDATE_RECORDS, SHOW_LOADER } from './actionTypes'
 import { recordsContext } from './recordsContext';
 import { recordsReducer } from './recordsReducer';
 
@@ -20,23 +20,52 @@ export const RecordsState = ({children}) => {
 
     const getRecords = async () => {
         showLoader();
-        try {
+        try 
+        {
             var result = await GetRecords({
                 date: getLocaleISOString(),
-                page:1,
-                perPage:10
+                page: 1,
+                perPage: 10
             });
-            console.log(result.data)
-            dispatch({type:GET_RECORDS, payload:result.data});
-        } catch (error) {
-            dispatch({type:GET_RECORDS, payload:state.recordsToday});
+            dispatch({type:UPDATE_RECORDS, payload:result.data});
+        } 
+        catch (error) {
+            dispatch({type:UPDATE_RECORDS, payload:state.recordsToday});
+        }
+    }
+
+    const setRecord = async (record, customer) => {
+        showLoader();
+        try 
+        {
+            let setResult = await SetCustomer({
+                firstName: customer.firstName,
+                secondName: customer.secondName,
+                lastName: customer.lastName,
+                email: customer.email
+            });
+
+            let result = await SetRecord({
+                customerId: +setResult.data.customer.id,
+                date: record.date,
+                time: record.time,
+                placeNumber: +record.placeNumber,
+                recordStateId: 1
+            });
+            state.recordsToday = state.recordsToday.filter( rec => rec.id !== result.data.record.id);
+            state.recordsToday.push(result.data.record);
+            dispatch({type:UPDATE_RECORDS, payload:state.recordsToday});
+        } 
+        catch (error)
+        {
+            dispatch({type:UPDATE_RECORDS, payload:state.recordsToday});
         }
     }
     
     return(
         <recordsContext.Provider value = 
         {{
-            showLoader, getRecords,
+            showLoader, getRecords, setRecord,
             loading: state.loading,
             count: state.customersToday,
             recordsToday: state.recordsToday,
