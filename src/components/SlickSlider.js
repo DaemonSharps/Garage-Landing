@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col} from "react-bootstrap";
 import Slider from "react-slick";
 import { PageSection } from "./PageSection";
-import images from "./images"
+import images from "../common/images"
 
 export default class SlickSlider extends Component {
 
@@ -44,14 +44,13 @@ export default class SlickSlider extends Component {
                 <Col className="py-5">
                     <Slider {...this.state.settings}>
                         {this.state.images
-                        .map(image =>
+                        .map((image, id) =>
                         (
-                            <img alt="text" src = {image}/>
+                            <img key = {id} alt="text" src = {image}/>
                         ))}
                     </Slider>
                 </Col>
             </PageSection>
-           
         )
         
     }

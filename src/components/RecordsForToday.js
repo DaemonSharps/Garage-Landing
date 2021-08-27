@@ -1,40 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col } from 'react-bootstrap';
-import { GetRecords } from './GarageAPI';
 import { PageSection } from './PageSection';
 import { Record } from './Record';
+import { recordsContext } from '../context/Records/recordsContext';
+import { Loader } from './Loader';
 
 
-export class RecordsForToday extends React.Component{
-    state ={
-        recordList: []
-    }
+export const RecordsForToday = () => {
 
-    dateToday = new Date().toISOString().substr(0,10);
+    const { recordsToday, loading } = useContext(recordsContext);
 
-    componentDidMount() {
-        GetRecords({
-            date:this.dateToday,
-            page:1,
-            perPage:10
-        })
-          .then(res => {
-            const recordList = res.data;
-            this.setState({ recordList });
-          })          
-      }
-
-    render(){
         return(
             <PageSection>
                 <Col md="12">
                 <h2 className="headerText"><div>Сегодня придут</div></h2>
-                    {this.state.recordList.filter(record => record.recordStateId === 1).map(rec => (
-                        <Record record = {rec}/>
+                    {loading
+                    ?<Loader/>
+                    :recordsToday.filter(record => record.recordStateId === 1).map(rec => (
+                      <Record record = {rec}/>
                     ))}
+                    {recordsToday.length === 0 && !loading
+                    ?<h3>Записей на сегодня нет. Будте первым!</h3>
+                    :''}
                 </Col>
             </PageSection>
         )
-    }
     
 }

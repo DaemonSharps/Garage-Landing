@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { RecordsForToday } from '../components/RecordsForToday';
-import { RegistrationForm } from '../components/RegistrationForm';
+import { RecordsForToday } from '../components/RecordsForToday'
+import { RegistrationForm } from '../components/RegistrationForm'
 
 export const Registration = () =>{
     return(

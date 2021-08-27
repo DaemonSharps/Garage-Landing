@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { RecordsState } from "./context/Records/RecordsState";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { SiteNavbar } from "./components/SiteNavbar";
 import { NotFound } from "./pages/404";
@@ -8,7 +8,7 @@ import { Registration } from "./pages/Registration";
 
 function App() {
   return (
-    <Fragment>
+    <RecordsState>
       <SiteNavbar/>
     <BrowserRouter>
       <Switch>
@@ -17,7 +17,7 @@ function App() {
         <Route component = {NotFound}/>
       </Switch>
     </BrowserRouter>
-    </Fragment>
+    </RecordsState>
   );
 }
 

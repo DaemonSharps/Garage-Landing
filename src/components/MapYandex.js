@@ -9,7 +9,7 @@ export const YandexMap = () =>(
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A940ee3088d77d5ca24a43973bdba4d6d1fae7170aec0816d41390991378c9d3e&amp;source=constructor" 
             width="100%" 
             height="300" 
-            frameborder="2">
+            frameBorder="2">
             </iframe>
         </Col>
     </Fragment>

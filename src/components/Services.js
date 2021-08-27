@@ -7,7 +7,7 @@ export const Services = ({serviseList}) =>(
         <h2 className="headerText-light"><div>Услуги</div></h2>
         <Accordion>
             {serviseList.map(service => (
-                <Accordion.Item eventKey={service.key}>
+                <Accordion.Item key = {service.key} eventKey={service.key}>
                     <Accordion.Header className="g-text-small">{service.header}</Accordion.Header>
                     <Accordion.Body className="g-text-small">{service.body}</Accordion.Body>
                 </Accordion.Item>
