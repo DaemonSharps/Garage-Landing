@@ -26,6 +26,7 @@ body {
 @include media-breakpoint-down(md) {
   body{
     padding-bottom: 300px;
+    background-image: url("/img/bg-bottom-repeat-md.webp");
   }
 }
 
