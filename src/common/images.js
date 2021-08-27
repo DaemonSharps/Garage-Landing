@@ -1,12 +1,12 @@
-import img1 from '../img/slider/slider_img_1.jpg';
-import img2 from '../img/slider/slider_img_2.jpg';
-import img3 from '../img/slider/slider_img_3.jpg';
-import img4 from '../img/slider/slider_img_4.jpg';
-import img5 from '../img/slider/slider_img_5.jpg';
-import img6 from '../img/slider/slider_img_6.jpg';
-import img7 from '../img/slider/slider_img_7.jpg';
-import img8 from '../img/slider/slider_img_8.jpg';
-import img9 from '../img/slider/slider_img_9.jpg';
+import img1 from '../img/slider/slider_img_1.webp';
+import img2 from '../img/slider/slider_img_2.webp';
+import img3 from '../img/slider/slider_img_3.webp';
+import img4 from '../img/slider/slider_img_4.webp';
+import img5 from '../img/slider/slider_img_5.webp';
+import img6 from '../img/slider/slider_img_6.webp';
+import img7 from '../img/slider/slider_img_7.webp';
+import img8 from '../img/slider/slider_img_8.webp';
+import img9 from '../img/slider/slider_img_9.webp';
 
 const images = [
 img1,
