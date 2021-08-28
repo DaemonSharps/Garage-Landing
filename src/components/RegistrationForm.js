@@ -3,6 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap"
 import garJpeg from "../img/places.webp"
 import { PageSection } from "./PageSection"
 import { recordsContext } from "../context/Records/recordsContext"
+import { getLocaleISOString } from "../common/helpers"
 
 export class RegistrationForm extends React.Component{
 
@@ -11,15 +12,12 @@ export class RegistrationForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            fisrtName:'',
-            secondName:'',
-            lastName:'',
-            eMail:'',
-            placeNumber:'',
-            date:'',
-            time:'',
-            customer:{},
-            submitDisabled : false,
+            placeNumber: 0,
+            date:getLocaleISOString().substr(0,10),
+            time:`${new Date().toLocaleTimeString().substr(0,5)}`,
+            invalids:{
+            },
+            submitDisabled : true,
             submitText : "Подтвердить"
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,23 +28,47 @@ export class RegistrationForm extends React.Component{
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
+        
+        const invalids = this.state.invalids;
+        invalids[name] = this.checkValid(target);
+
+        this.setState({submitDisabled: false, submitText:"Подтвердить"});
+        for(var key in invalids){
+            if(invalids[key] === true){
+                this.setState({submitDisabled: true, submitText:"Подтвердить"});
+            }
+        }
+
         this.setState({
-          [name]: value
+          [name]: value,
+          invalids: invalids
         });
+    }
+
+    checkValid(target){
+        switch (target.type){
+            case "email":
+                if(!/.+@.+\..+/i.test(target.value)){
+                    return true;
+                }
+                break
+            default:
+                return target.value.length === 0;
+        }
+        
+        return false;
     }
 
     handleSubmit(event){
         event.preventDefault();
+
+        this.setState({submitDisabled: true, submitText:"Загрузка..."});
         
-        const form = this;
-        form.setState({submitDisabled: true, submitText:"Загрузка..."});
-          
-        form.context.setRecord(
+        this.context.setRecord(
         {
-            date:form.state.date,
-            time:form.state.time,
-            placeNumber:+form.state.placeNumber
+            date:this.state.date,
+            time:this.state.time,
+            placeNumber:+this.state.placeNumber
         },
         {
             firstName: this.state.firstName,
@@ -55,28 +77,65 @@ export class RegistrationForm extends React.Component{
             email: this.state.email
         });
 
-        form.setState({submitDisabled: false, submitText:"Подтвердить"});
-          
+        this.setState({submitDisabled: false, submitText:"Подтвердить"});
     }
 
+    FormControlValidated = ({name, type, placeholder, errorMessage = "Вы ничего не ввели", children}) =>(
+        <Form.Group>
+            {children}
+            <Form.Control 
+            isInvalid={this.state.invalids[name]}
+            name = {name}
+            type = {type}
+            className = "mb-2 g-text-small" 
+            placeholder = {placeholder} 
+            onChange={this.handleInputChange}/>
+            <Form.Control.Feedback type="invalid">
+                {errorMessage}
+            </Form.Control.Feedback>
+        </Form.Group>
+    )
     render(){
         return(
         <PageSection>
-            <Form className="row my-3 d-flex justify-content-center pt-5" onSubmit={this.handleSubmit}>
+            <Form className="row my-3 d-flex justify-content-center pt-5" onSubmit={this.handleSubmit} noValidate>
                 <h2 className="headerText"><div>Запись на приемъ</div></h2>
             <Col md="10 text-start">
-                <Form.Control name = "email" type="email" className="mb-2 g-text-small" placeholder="your@mail.com" onChange={this.handleInputChange}/>
-                <Form.Control name = "firstName" type="text" className="mb-2 g-text-small" placeholder="Имя"  onChange={this.handleInputChange}/>
-                <Form.Control name = "secondName" type="text" className="mb-2 g-text-small" placeholder="Фамилия"  onChange={this.handleInputChange}/>
-                <Form.Control name = "lastName" type="text" className="mb-2 g-text-small" placeholder="Отчество"  onChange={this.handleInputChange}/>
+                <this.FormControlValidated
+                 name ="email"
+                 type="email" 
+                 placeholder="ваша@почта.ру"
+                 errorMessage="Почта введена некорректно"/>
+                 <this.FormControlValidated
+                 name ="firstName"
+                 type="text" 
+                 placeholder="Ваше имя"/>
+                 <this.FormControlValidated
+                 name ="secondName"
+                 type="text" 
+                 placeholder="Ваша фамилия"/>
+                 <this.FormControlValidated
+                 name ="lastName"
+                 type="text" 
+                 placeholder="Ваше отчество"/>
                 <Row className="mb-3">
                     <Col md="4">
                         <Form.Label className="g-text-small">Дата:</Form.Label>
-                        <Form.Control className="g-text-small" name = "date" type="date"  onChange={this.handleInputChange}/>
+                        <Form.Control 
+                        className="g-text-small"
+                        name = "date" 
+                        type="date" 
+                        defaultValue={this.state.date} 
+                        onChange={this.handleInputChange}/>
                     </Col>
                     <Col md="4">
                         <Form.Label className="g-text-small">Время:</Form.Label>
-                        <Form.Control className="g-text-small" name = "time" type="time"  onChange={this.handleInputChange}/>
+                        <Form.Control 
+                        className="g-text-small"
+                        name = "time" 
+                        type="time" 
+                        defaultValue={this.state.time}
+                        onChange={this.handleInputChange}/>
                     </Col>
                     <Col md="4">
                         <Form.Label className="g-text-small">Место:</Form.Label>
@@ -94,6 +153,7 @@ export class RegistrationForm extends React.Component{
                                 <option key = {place} value = {place} >{place}</option>
                             ))}
                         </Form.Select>
+                        <Form.Control.Feedback type="invalid">Ошибочка</Form.Control.Feedback>
                     </Col>
                 </Row>
                 <Button 
