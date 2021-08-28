@@ -15,8 +15,7 @@ export class RegistrationForm extends React.Component{
             placeNumber: 0,
             date:getLocaleISOString().substr(0,10),
             time:`${new Date().toLocaleTimeString().substr(0,5)}`,
-            invalids:{
-            },
+            invalids:{},
             submitDisabled : true,
             submitText : "Подтвердить"
         }
