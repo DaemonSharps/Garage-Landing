@@ -39,7 +39,17 @@
             background-color: getColor($threme);
         }
         &:focus{
-            box-shadow: 0 0 0 0.25rem getColor(invertTreme($threme));
+            box-shadow: 0 0 0 0.25rem rgba($color: getColor(invertTreme($threme)), $alpha: 0.6);
         }
     }
+
+    .accordion-button:focus{
+        border-color: $brown-dark;
+        box-shadow: 0 0 0 0.25rem rgba($color:$brown-light, $alpha: 0.6);
+      }
+    
+      .accordion-button:not(.collapsed) {
+        color: $brown;
+        background-color: rgba($color:$brown-light, $alpha: 0.3);
+      }
 }
