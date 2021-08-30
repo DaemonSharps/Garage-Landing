@@ -68,21 +68,19 @@
   }
 
   .g-btn-text{
-    font-size: 15px;
+    font-size: 18px;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
   }
 
   .g-text-small{
-    font-size: 15px;
+    font-size: 20px;
     color: $brown;
-    letter-spacing: 1px;
   }
 
   .g-text-block{
     max-width: 800px;
+    padding: 20px;
     margin: auto;
-    padding-left: 10px;
-    padding-right: 10px;
   }
