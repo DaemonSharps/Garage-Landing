@@ -11,7 +11,10 @@ const apiInstance = axios.create({
 });
 
 export async function GetRecords(params){
-  const stringParams = `Date=${params.date}&page=${params.page}&PerPage=${params.perPage}`;
+  let stringParams = `date=${params.date}&page=${params.page}&PerPage=${params.perPage}`;
+  stringParams += params.dateFrom !== null 
+  ? `&dateFrom=${params.dateFrom}`
+  : '';
   return await apiInstance.get("Records?" + stringParams);
 }
 
