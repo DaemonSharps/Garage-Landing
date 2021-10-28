@@ -1,7 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import { Container, Navbar, NavbarBrand } from 'react-bootstrap'
-import { getLocaleISOString } from '../common/helpers';
-import { recordsContext } from '../context/Records/recordsContext';
 
 export const SiteNavbar = () =>{
     return(

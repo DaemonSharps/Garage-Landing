@@ -1,9 +1,8 @@
-import React, { useReducer } from 'react';
-import { GetRecords, SetRecord, SetCustomer } from '../../common/GarageAPI';
-import { getLocaleISOString } from '../../common/helpers'
+import React, { useReducer } from 'react'
+import { GetRecords, SetRecord, SetCustomer } from '../../common/GarageAPI'
 import { UPDATE_RECORDS, SHOW_LOADER } from './actionTypes'
-import { recordsContext } from './recordsContext';
-import { recordsReducer } from './recordsReducer';
+import { recordsContext } from './recordsContext'
+import { recordsReducer } from './recordsReducer'
 
 export const RecordsState = ({children}) => {
 
