@@ -18,19 +18,20 @@ export const RecordsState = ({children}) => {
 
     const showLoader = () => dispatch({type:SHOW_LOADER});
 
-    const getRecords = async () => {
+    const getRecords = async (params) => {
         showLoader();
         try 
         {
             var result = await GetRecords({
-                date: getLocaleISOString(),
-                page: 1,
-                perPage: 10
+                date: params.dateTo,
+                dateFrom: params.dateFrom,
+                page: params.page,
+                perPage: params.perPage
             });
             dispatch({type:UPDATE_RECORDS, payload:result.data});
         } 
         catch (error) {
-            dispatch({type:UPDATE_RECORDS, payload:state.recordsToday});
+            dispatch({type:UPDATE_RECORDS, payload:[]});
         }
     }
 

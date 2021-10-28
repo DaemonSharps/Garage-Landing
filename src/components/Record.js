@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 export const Record = ({record}) =>{
 
@@ -8,6 +8,7 @@ export const Record = ({record}) =>{
     const fullName = customer.secondName + " " + customer.firstName + " " + customer.lastName;
 
     return(
+        <Col md="4">
         <Card key={record.id} className="my-2">
             <Card.Header className="g-text-small">
                 {fullName}
@@ -16,5 +17,6 @@ export const Record = ({record}) =>{
                 <p>Место: {record.placeNumber}  Время: {record.time + " " + record.date.substr(0,10)}</p>
             </Card.Body>
         </Card>
+        </Col>
     )
 }
