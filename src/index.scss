@@ -20,7 +20,7 @@ body {
   background-repeat: repeat-y, repeat;
   background-position: 50% 0, 50% 564px;
   background-image: url("/img/bg-bottom-repeat.webp");
-  background-size: contain;
+  background-size: 130%;
 }
 
 @include media-breakpoint-down(md) {
