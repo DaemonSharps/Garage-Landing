@@ -1,21 +1,20 @@
 import React from 'react'
 import { InputGroup, Form, Button, Col, Row} from 'react-bootstrap';
 import { getLocaleISOString } from '../common/helpers';
-import { recordsContext } from '../context/Records/recordsContext';
 
 export class RecordFilter extends React.Component{
-
-    static contextType = recordsContext;
 
     constructor(props){
         super(props);
         this.state = {
-            dateTo: getLocaleISOString().substr(0,10),
-            dateFrom: getLocaleISOString().substr(0, 10),
-            page: 1,
-            perPage: 10,
+            ...props.filter,
+            setFilter: props.setFilter,
+            loading: props.loading,
+            searchRecords: props.searchRecords,
             invalids:{}
-        }
+        };
+        this.state.dateFrom = getLocaleISOString().substr(0, 10);
+            
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -38,8 +37,8 @@ export class RecordFilter extends React.Component{
 
     checkDates(dates){
         var dateFrom = +new Date(dates.dateFrom) || +new Date(this.state.dateFrom);
-        var dateTo = +new Date(dates.dateTo) || +new Date(this.state.dateTo);
-        if(dateFrom > dateTo){
+        var date = +new Date(dates.date) || +new Date(this.state.date);
+        if(dateFrom > date){
             this.setState({
                 invalids:{
                     date: true
@@ -59,11 +58,13 @@ export class RecordFilter extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-        this.context.getRecords({
-            dateTo: this.state.dateTo,
-            dateFrom: this.state.dateFrom,
-            perPage: this.state.perPage,
-            page: this.state.page});
+        this.state.setFilter({
+            date: this.state.date,
+            dateFrom : this.state.dateFrom,
+            page: this.state.page,
+            perPage: this.state.perPage
+        });
+        this.state.searchRecords(this.state);
     }
     
     render(){
@@ -75,7 +76,7 @@ export class RecordFilter extends React.Component{
                 <InputGroup.Text>Дата от:</InputGroup.Text>
                 <Form.Control isInvalid={this.state.invalids.date} name="dateFrom" type="date" defaultValue={this.state.dateFrom} onChange={this.handleInputChange}/>
                 <InputGroup.Text>Дата до:</InputGroup.Text>
-                <Form.Control isInvalid={this.state.invalids.date} name="dateTo" type="date" defaultValue={this.state.dateTo} onChange={this.handleInputChange}/>
+                <Form.Control isInvalid={this.state.invalids.date} name="date" type="date" defaultValue={this.state.date} onChange={this.handleInputChange}/>
                 <Form.Control.Feedback type="invalid">
                 {this.state.invalids.date ? "Дата 'до' не может быть больше даты 'от'" : ''}
                 </Form.Control.Feedback>
@@ -98,7 +99,7 @@ export class RecordFilter extends React.Component{
                 type="submit" 
                 variant="none" 
                 className="g-btn-brown-dark g-btn-text"
-                disabled={this.context.loading || this.state.submitDisabled}
+                disabled={this.state.loading || this.state.submitDisabled}
                 >
                     Поиск
                 </Button>

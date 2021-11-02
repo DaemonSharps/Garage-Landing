@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Col, Form, Row } from "react-bootstrap"
-import garJpeg from "../img/places.webp"
+import { Button, Col, Form} from "react-bootstrap"
 import { PageSection } from "./PageSection"
 import { recordsContext } from "../context/Records/recordsContext"
 import { getLocaleISOString } from "../common/helpers"
@@ -98,12 +97,12 @@ export class RegistrationForm extends React.Component{
         return(
         <PageSection>
             <Form className="row my-3 d-flex justify-content-center pt-5" onSubmit={this.handleSubmit} noValidate>
-                <h2 className="headerText"><div>Запись на приемъ</div></h2>
-            <Col md="10 text-start">
+                <h2 className="headerText"><div>Регистрация</div></h2>
+            <Col md="12 text-start">
                 <this.FormControlValidated
                  name ="email"
                  type="email" 
-                 placeholder="ваша@почта.ру"
+                 placeholder="ваша-с почта"
                  errorMessage="Почта введена некорректно"/>
                  <this.FormControlValidated
                  name ="firstName"
@@ -117,44 +116,10 @@ export class RegistrationForm extends React.Component{
                  name ="lastName"
                  type="text" 
                  placeholder="Ваше отчество"/>
-                <Row className="mb-3">
-                    <Col md="4">
-                        <Form.Label className="g-text-small">Дата:</Form.Label>
-                        <Form.Control 
-                        className="g-text-small"
-                        name = "date" 
-                        type="date" 
-                        defaultValue={this.state.date} 
-                        onChange={this.handleInputChange}/>
-                    </Col>
-                    <Col md="4">
-                        <Form.Label className="g-text-small">Время:</Form.Label>
-                        <Form.Control 
-                        className="g-text-small"
-                        name = "time" 
-                        type="time" 
-                        defaultValue={this.state.time}
-                        onChange={this.handleInputChange}/>
-                    </Col>
-                    <Col md="4">
-                        <Form.Label className="g-text-small">Место:</Form.Label>
-                        <Form.Select 
-                        className="g-text-small" 
-                        name = "placeNumber" 
-                        defaultValue="0" 
-                        onChange={this.handleInputChange} 
-                        disabled = {this.context.loading}
-                        >
-                        <option value ="0" >{this.context.loading 
-                        ? 'Загрузка мест...'
-                        : 'Стоя...'}</option>
-                            {this.context.freePlaces.map(place => (
-                                <option key = {place} value = {place} >{place}</option>
-                            ))}
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">Ошибочка</Form.Control.Feedback>
-                    </Col>
-                </Row>
+                 <this.FormControlValidated
+                 name ="lastName"
+                 type="password" 
+                 placeholder="Секрiтный ключъ"/>
                 <Button 
                 type="submit" 
                 variant="none" 
@@ -163,9 +128,6 @@ export class RegistrationForm extends React.Component{
                 >
                     {this.state.submitText}
                 </Button>
-            </Col>
-            <Col md="2">
-                <img className="garageImg img-thumbnail img-fluid" alt="Responsive" src={garJpeg}/>
             </Col>
         </Form>
         </PageSection>
