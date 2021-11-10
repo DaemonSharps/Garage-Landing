@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { RegistrationForm } from '../components/RegistrationForm'
+import { RegistrationForm } from '../components/Forms/RegistrationForm'
 
 export const Registration = ()=>{
     return(

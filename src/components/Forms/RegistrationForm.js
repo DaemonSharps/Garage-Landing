@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Col, Form} from "react-bootstrap"
-import { PageSection } from "./PageSection"
-import { recordsContext } from "../context/Records/recordsContext"
-import { getLocaleISOString } from "../common/helpers"
+import { PageSection } from "../PageSection"
+import { recordsContext } from "../../context/Records/recordsContext"
+import { getLocaleISOString } from "../../common/helpers"
 
 export class RegistrationForm extends React.Component{
 

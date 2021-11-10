@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import { PageSection } from './PageSection';
 import { Record } from './Record';
 import { Loader } from './Loader';
-import { RecordFilter } from './RecordFilter';
+import { RecordFilter } from './Forms/RecordFilter';
 import { getLocaleISOString } from '../common/helpers';
 import { GetRecords } from '../common/GarageAPI';
 

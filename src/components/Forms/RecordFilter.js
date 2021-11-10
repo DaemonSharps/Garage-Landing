@@ -1,6 +1,6 @@
 import React from 'react'
 import { InputGroup, Form, Button, Col, Row} from 'react-bootstrap';
-import { getLocaleISOString } from '../common/helpers';
+import { getLocaleISOString } from '../../common/helpers';
 
 export class RecordFilter extends React.Component{
 
