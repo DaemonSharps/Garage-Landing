@@ -4,7 +4,7 @@ import { Loader } from "../components/Loader";
 import { PageSection } from "../components/PageSection"
 
 export const Account = () =>{
-    const [records, setRecords] = useState(Array(20).fill(0));
+    const [records, setRecords] = useState(Array(12).fill(0));
 
     const addRecords = (e) =>{
         const scroll = e.target.scrollHeight - e.target.scrollTop;
@@ -33,7 +33,7 @@ export const Account = () =>{
                             <Card className="p-3 my-1">
                                 <Card.Title>Мои записи</Card.Title>
                             </Card>
-                            <Row onScroll={addRecords} style={{overflow:'scroll', height:'750px'}}>
+                            <Row onScroll={addRecords} style={{overflow:'scroll', maxHeight:'750px'}}>
                                         <Col md="4">
                                             <Card className="my-3">
                                                 <Card.Body className="g-text-small text-center">
@@ -53,17 +53,9 @@ export const Account = () =>{
                                             </Card>
                                             </Col>
                                           ))}
-                                          {records
-                                        .map(_ => (
-                                            <Col md="4">
-                                            <Card className="my-3">
-                                                <Card.Body className="g-text-small">
-                                                    <p>Место: 1  Время: 22:00</p>
-                                                </Card.Body>
-                                            </Card>
-                                            </Col>
-                                          ))}
-                                        <Loader/>
+                                        {records.length > 11
+                                        ?<Loader/>
+                                        :''}
                             </Row>
                     </Col>
                 </Row>
