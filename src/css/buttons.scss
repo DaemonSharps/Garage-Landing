@@ -39,7 +39,11 @@
             background-color: getColor($threme);
         }
         &:focus{
+            @extend %border-#{invertTreme($threme)};
+            @extend %text-#{invertTreme($threme)};
+            background-color: getColor($threme);
             box-shadow: 0 0 0 0.25rem rgba($color: getColor(invertTreme($threme)), $alpha: 0.6);
+            
         }
     }
 
