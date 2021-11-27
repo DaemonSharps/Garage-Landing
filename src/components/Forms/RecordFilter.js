@@ -1,23 +1,48 @@
 import React from 'react'
 import { InputGroup, Form, Button, Col, Row} from 'react-bootstrap';
 import { getLocaleISOString } from '../../common/helpers';
+import { GetRecords } from '../../common/GarageAPI';
 
 export class RecordFilter extends React.Component{
 
     constructor(props){
         super(props);
+        var initDate = getLocaleISOString().substr(0, 10);
         this.state = {
-            ...props.filter,
-            setFilter: props.setFilter,
-            loading: props.loading,
-            searchRecords: props.searchRecords,
+            date: initDate, 
+            dateFrom: initDate,
+            page: 1,
+            perPage: 10,
+            setRecords:props.setRecords,
+            submitDisabled:false,
+            loading:false,
             invalids:{}
         };
-        this.state.dateFrom = getLocaleISOString().substr(0, 10);
-            
+        let setLoad = (value) =>{
+            this.setState({loading:value});
+            props.setLoading(value);
+        }
+        this.state.setLoading = setLoad;
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount = () => this.searchRecords(this.state);
+
+    searchRecords = async (filter) =>{
+        try{
+            this.state.setLoading(true);
+            let records = await GetRecords(filter);
+            this.state.setRecords(records.data);
+        }
+        catch{
+            this.state.setRecords([]);
+        }
+        finally{
+            this.state.setLoading(false);
+        }
+    }    
+
     handleInputChange(event){
         const target = event.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
@@ -58,13 +83,13 @@ export class RecordFilter extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-        this.state.setFilter({
+        this.setState({
             date: this.state.date,
             dateFrom : this.state.dateFrom,
             page: this.state.page,
             perPage: this.state.perPage
         });
-        this.state.searchRecords(this.state);
+        this.searchRecords(this.state);
     }
     
     render(){

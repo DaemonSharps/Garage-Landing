@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Container, Nav, Navbar} from 'react-bootstrap'
-import { LoginModal } from './Modals/LoginModal';
+import { Container, Nav, Navbar} from 'react-bootstrap'
+import { LoginModal } from './Modals/LoginModal'
+import { BrownButton } from '../components/Buttons'
 
 export const SiteNavbar = (history) =>{
     const [showAuthModal, setShowAuthModal] = useState(false);
@@ -11,9 +12,7 @@ export const SiteNavbar = (history) =>{
                 <Navbar.Toggle aria-controls="login"/>
                 <Navbar.Collapse id="login">
                     <Nav className="ms-auto">
-                        <Button className = "g-btn-brown-light g-btn-text" onClick = {() => setShowAuthModal(true)}>
-                            Войти
-                        </Button>
+                        <BrownButton text="Войти" onClick = {() => setShowAuthModal(true)}/>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

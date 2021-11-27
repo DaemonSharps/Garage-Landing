@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import { Button, Card, Col, Container, Row } from "react-bootstrap"
+import { Card, Col, Container, Row } from "react-bootstrap"
+import { BrownButton } from "../components/Buttons";
 import { Loader } from "../components/Loader";
 import { PageSection } from "../components/PageSection"
 
 export const Account = () =>{
     const [records, setRecords] = useState(Array(12).fill(0));
 
-    const addRecords = (e) =>{
+    const onRecordScroll = (e) =>{
         const scroll = e.target.scrollHeight - e.target.scrollTop;
         const client = e.target.clientHeight;
         if(scroll - client < 10){
@@ -26,18 +27,18 @@ export const Account = () =>{
                                 <p className="g-text-small">Алексеевич</p>
                                 <p className="g-text-small">Почта: smirnov.god@gmail.com</p>
                             </Card.Body>
-                                <Button variant="none" className="m-3 g-btn-brown-dark g-btn-text">Изменить</Button>
+                            <BrownButton text="Изменить" light/>
                         </Card>
                     </Col>
                     <Col md="8">
                             <Card className="p-3 my-1">
                                 <Card.Title>Мои записи</Card.Title>
                             </Card>
-                            <Row onScroll={addRecords} style={{overflow:'scroll', maxHeight:'750px'}}>
+                            <Row onScroll={onRecordScroll} style={{overflow:'scroll', maxHeight:'750px'}}>
                                         <Col md="4">
                                             <Card className="my-3">
                                                 <Card.Body className="g-text-small text-center">
-                                                <Button variant="none" className="m-2 g-btn-brown-light g-btn-text">&#10010;</Button>
+                                                    <BrownButton text="&#10010;"/>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -47,8 +48,8 @@ export const Account = () =>{
                                             <Card className="my-3">
                                                 <Card.Body className="g-text-small">
                                                     <p>Место: 1  Время: 22:00</p>
-                                                    <Button variant="none" className="m-2 g-btn-brown-light g-btn-text">Изменить</Button>
-                                                    <Button variant="none" className="m-2 g-btn-brown-dark g-btn-text">Оменить</Button>
+                                                    <BrownButton text="&#9998;" light/>
+                                                    <BrownButton text="&#10006;"/>
                                                 </Card.Body>
                                             </Card>
                                             </Col>

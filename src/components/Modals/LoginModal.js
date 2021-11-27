@@ -1,13 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Modal, Button, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Modal } from 'react-bootstrap'
 import { LoginForm } from '../Forms/LoginForm'
-import { useHistory } from 'react-router-dom'
+import { BrownButton } from '../Buttons'
 
-export const LoginModal = (props, context) =>{
+export const LoginModal = (props) =>{
 
     const [isLogin, setIsLogin] = useState(true);
-
-    const history = useHistory();
 
     return(
         <Modal
@@ -25,8 +23,8 @@ export const LoginModal = (props, context) =>{
                 <LoginForm isLogin={isLogin}/>
             </Modal.Body>
             <Modal.Footer>
-                <Button className="g-btn-text" onClick={() => setIsLogin(!isLogin)}>{!isLogin ? "Входъ": "Регистрацъя"}</Button>
-                <a className="btn g-btn-brown-dark g-btn-text" href="/account">{isLogin ? "Входъ": "Регистрацъя"}</a>
+                <BrownButton text={!isLogin ? "Входъ": "Регистрацъя"} onClick={() => setIsLogin(!isLogin)}/>
+                <BrownButton light text={isLogin ? "Входъ": "Регистрацъя"} onClick={() =>{ window.location.href="/account"}}/>
             </Modal.Footer>
         </Modal>
     )
