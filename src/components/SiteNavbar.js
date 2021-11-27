@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Container, Nav, Navbar, NavLink} from 'react-bootstrap'
 import { LoginModal } from './Modals/LoginModal'
 import { BrownButton } from '../components/Buttons'
+import { userContext } from '../context/User/userContext'
 
-export const SiteNavbar = (history) =>{
+export const SiteNavbar = () =>{
     const [showAuthModal, setShowAuthModal] = useState(false);
+    const { authorized } = useContext(userContext);
     return(
         <Navbar className="navbarsite">
             <Container>
@@ -14,11 +16,13 @@ export const SiteNavbar = (history) =>{
                 <Navbar.Collapse id="login">
                     <Nav.Link href="/records">Записи</Nav.Link>
                     <Nav className="ms-auto">
-                        <BrownButton text="Войти" onClick = {() => setShowAuthModal(true)}/>
+                        {authorized
+                        ?<BrownButton text="Аккаунт" onClick = {() => {window.location.href="/account";}}/>
+                        :<BrownButton text="Войти" onClick = {() => setShowAuthModal(true)}/>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-            <LoginModal history={history} onHide = {setShowAuthModal} show = {showAuthModal}/>
+            <LoginModal onHide = {setShowAuthModal} show = {showAuthModal}/>
         </Navbar>
         )
     }

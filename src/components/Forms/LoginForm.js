@@ -36,7 +36,7 @@ export const LoginForm = (props) =>{
                     <Form.Group className="mb-3">
                         <Form.Label>Имя</Form.Label>
                         <Form.Control
-                        name = "Name"
+                        name = "firstName"
                         type = "text"
                         placeholder = "Имя"
                         />
@@ -44,7 +44,7 @@ export const LoginForm = (props) =>{
                     <Form.Group className="mb-3">
                         <Form.Label>Фамилия</Form.Label>
                         <Form.Control
-                        name = "MidddleName"
+                        name = "secondName"
                         type = "text"
                         placeholder = "Фамилия"
                         />
@@ -52,7 +52,7 @@ export const LoginForm = (props) =>{
                     <Form.Group className="mb-3">
                         <Form.Label>Отчество</Form.Label>
                         <Form.Control
-                        name = "LastName"
+                        name = "lastName"
                         type = "text"
                         placeholder = "Отчество"
                         />
