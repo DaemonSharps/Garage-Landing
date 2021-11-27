@@ -1,6 +1,5 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { BrownButton } from './Buttons'
 
 export const PrimaryImage = () =>(
     <div className="homeImg">
@@ -10,7 +9,6 @@ export const PrimaryImage = () =>(
                             <p className="secondaryText">Добро пожаловать</p>
                             <h1 className="primaryText">Гаражъ</h1>
                             <p className="secondaryText">Помiстье арсения</p>
-                            <BrownButton text="Приемъ" onClick={() => window.location.href="/records"}/>
                     </Col>
                 </Row>
             </Container>

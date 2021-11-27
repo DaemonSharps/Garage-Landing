@@ -4,83 +4,94 @@
     color: white !important;
     letter-spacing: 6px;
     text-transform: uppercase;
-  }
+}
 
-  .primaryText{
-    @extend %main-text;
-    font-size: 165px;
-    padding: 8px 0px;
-  }
+.primaryText{
+  @extend %main-text;
+  font-size: 165px;
+  padding: 8px 0px;
+}
   
-  .secondaryText{
-    @extend %main-text;
-    font-size: 35px;
-  }
+.secondaryText{
+  @extend %main-text;
+  font-size: 35px;
+}
 
-  @mixin text-header($textColor, $afterColor) {
-    width: fit-content;
-    position: relative;
-    margin: auto;
-    margin-bottom: 1.5rem;
+@mixin text-header($textColor, $afterColor) {
+  width: fit-content;
+  position: relative;
+  margin: auto;
+  margin-bottom: 1.5rem;
 
-    div{
-      font-family: Imperial-Font;
-      font-size: 50px;
-      line-height: 60px;
-      padding: 3px;
-      color: $textColor !important;
+  div{
+    font-family: Imperial-Font;
+    font-size: 50px;
+    line-height: 60px;
+    padding: 3px;
+    color: $textColor !important;
 
-      &:after{
-        content: '';
-        border-top: $afterColor solid 8px;
-        border-top-style: double;
-        border-bottom: $afterColor solid 3px ;
-        width: calc(100% + 20px);
-        height: 100%;
-        left: -10px;
-        top: -4px;
-        position: absolute;
-      }
-
-      @include media-breakpoint-down(md) {
-        font-size: 30px;
-        line-height: 40px;
-      }
-    }
-  }
-
-  .headerText{
-    @include text-header($brown, #000);
-  }
-
-  .headerText-light{
-    @include text-header($brown-light, #fff);
-  }
-
-  @include media-breakpoint-down(md) {
-    .primaryText{
-      font-size: 65px;
+    &:after{
+      content: '';
+      border-top: $afterColor solid 8px;
+      border-top-style: double;
+      border-bottom: $afterColor solid 3px ;
+      width: calc(100% + 20px);
+      height: 100%;
+      left: -10px;
+      top: -4px;
+      position: absolute;
     }
 
-    .secondaryText{
+    @include media-breakpoint-down(md) {
       font-size: 30px;
+      line-height: 40px;
     }
   }
+}
 
-  .g-btn-text{
-    font-size: 18px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
+.headerText{
+  @include text-header($brown, #000);
+}
+
+.headerText-light{
+  @include text-header($brown-light, #fff);
+}
+
+@include media-breakpoint-down(md) {
+  .primaryText{
+    font-size: 65px;
   }
 
-  .g-text-small{
-    font-size: 20px;
-    color: $brown;
+  .secondaryText{
+    font-size: 30px;
   }
+}
 
-  .g-text-block{
-    max-width: 800px;
-    padding: 20px;
-    margin: auto;
-  }
+.g-btn-text{
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.g-text-small{
+  font-size: 20px;
+  color: $brown;
+}
+
+.g-text-block{
+  max-width: 800px;
+  padding: 20px;
+  margin: auto;
+}
+
+a.nav-link{
+   @extend %main-text;
+   font-size:20px;
+   &:hover{
+    color:$brown-light !important;
+   }
+   &:focus{
+   color:$brown-light !important;
+   }
+}
