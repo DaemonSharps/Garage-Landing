@@ -1,7 +1,8 @@
 import React from 'react'
-import { InputGroup, Form, Button, Col, Row} from 'react-bootstrap';
-import { getLocaleISOString } from '../../common/helpers';
-import { GetRecords } from '../../common/GarageAPI';
+import { InputGroup, Form, Button, Col, Row} from 'react-bootstrap'
+import { getLocaleISOString } from '../../common/helpers'
+import { GetRecords } from '../../common/GarageAPI'
+import { BrownButton } from '../Buttons'
 
 export class RecordFilter extends React.Component{
 
@@ -96,7 +97,7 @@ export class RecordFilter extends React.Component{
     return(
     <Form className="align-content-center pb-5 pt-3" onSubmit={this.handleSubmit}>
         <Row>
-            <Col md="5">
+            <Col md="5" className="my-2">
             <InputGroup>
                 <InputGroup.Text>Дата от:</InputGroup.Text>
                 <Form.Control isInvalid={this.state.invalids.date} name="dateFrom" type="date" defaultValue={this.state.dateFrom} onChange={this.handleInputChange}/>
@@ -107,7 +108,7 @@ export class RecordFilter extends React.Component{
                 </Form.Control.Feedback>
             </InputGroup>
             </Col>
-            <Col md="5">
+            <Col md="5" className="my-2">
             <InputGroup>
                 <InputGroup.Text>Записей на страницу:</InputGroup.Text>
                 <Form.Select name="perPage" defaultValue={this.state.perPage} onChange={this.handleInputChange}>
@@ -119,15 +120,13 @@ export class RecordFilter extends React.Component{
                 <Form.Control name="page" type="number" defaultValue={this.state.page} onChange={this.handleInputChange}/>
             </InputGroup>
             </Col>
-            <Col md='2'>
-                <Button 
-                type="submit" 
-                variant="none" 
-                className="g-btn-brown-dark g-btn-text"
+            <Col md="2">
+                <BrownButton 
+                text="Поискъ"
+                type="submit"
+                light
                 disabled={this.state.loading || this.state.submitDisabled}
-                >
-                    Поиск
-                </Button>
+                />
             </Col>
         </Row>
     </Form>
