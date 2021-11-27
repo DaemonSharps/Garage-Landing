@@ -18,7 +18,7 @@ export const LoginForm = (props) =>{
                         <Form.Control
                         name = "email"
                         type = "email"
-                        placeholder = "Введите адрессъ почтового отделенъя"
+                        placeholder = "Введите адрессъ почтампта"
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -46,7 +46,7 @@ export const LoginForm = (props) =>{
                         <Form.Control
                         name = "MidddleName"
                         type = "text"
-                        placeholder = "ФамилияФ"
+                        placeholder = "Фамилия"
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">

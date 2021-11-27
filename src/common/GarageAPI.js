@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://garagewebapi.somee.com/api/";
+const API_URL = process.env.REACT_APP_GARAGE_API;
 
 const apiInstance = axios.create({
   baseURL:API_URL,
