@@ -47,7 +47,10 @@ export const Account = () =>{
                                             <Col md="4">
                                             <Card className="my-3">
                                                 <Card.Body className="g-text-small">
-                                                    <p>Место: 1  Время: 22:00</p>
+                                                    <Col>
+                                                        <Row><p>Дата 21 12 2021</p></Row>
+                                                        <Row><p>Место: 1  Время: 22:00</p></Row>
+                                                    </Col>
                                                     <BrownButton text="&#9998;" light/>
                                                     <BrownButton text="&#10006;"/>
                                                 </Card.Body>
