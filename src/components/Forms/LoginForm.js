@@ -3,11 +3,20 @@ import { Form, Row, Col } from 'react-bootstrap'
 
 export const LoginForm = (props) =>{
 
-    const [formState, setProfileState] = useState(props);
+    const [isLogin, setIsLogin] = useState(props.isLogin);
+    const [data, setData] = useState({});
 
+    const onChange = (e) =>{
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        data[name] = value;
+        setData(data);
+        props.setFormData(data);
+    }
     useEffect(() => {
-        setProfileState(props);
-    }, [props]);
+        setIsLogin(props.isLogin);
+    }, [props.isLogin]);
 
         return(
             <Form>
@@ -19,6 +28,7 @@ export const LoginForm = (props) =>{
                         name = "email"
                         type = "email"
                         placeholder = "Введите адрессъ почтампта"
+                        onChange={onChange}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -27,38 +37,44 @@ export const LoginForm = (props) =>{
                         name = "password"
                         type = "password"
                         placeholder = "Секрiтный ключъ"
+                        onChange={onChange}
                         />
                     </Form.Group>
                     </Col>
                 </Row>
-                 <Row className={formState.isLogin? "d-none":''}>
-                    <Col>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Имя</Form.Label>
-                        <Form.Control
-                        name = "firstName"
-                        type = "text"
-                        placeholder = "Имя"
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Фамилия</Form.Label>
-                        <Form.Control
-                        name = "secondName"
-                        type = "text"
-                        placeholder = "Фамилия"
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Отчество</Form.Label>
-                        <Form.Control
-                        name = "lastName"
-                        type = "text"
-                        placeholder = "Отчество"
-                        />
-                    </Form.Group>
-                    </Col>
-                </Row>
+                {isLogin
+                ?''
+                :<Row>
+                <Col>
+                <Form.Group className="mb-3">
+                    <Form.Label>Имя</Form.Label>
+                    <Form.Control
+                    name = "firstName"
+                    type = "text"
+                    placeholder = "Имя"
+                    onChange={onChange}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Фамилия</Form.Label>
+                    <Form.Control
+                    name = "secondName"
+                    type = "text"
+                    placeholder = "Фамилия"
+                    onChange={onChange}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Отчество</Form.Label>
+                    <Form.Control
+                    name = "lastName"
+                    type = "text"
+                    placeholder = "Отчество"
+                    onChange={onChange}
+                    />
+                </Form.Group>
+                </Col>
+                </Row>}
             </Form>
     )
 }
