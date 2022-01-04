@@ -9,7 +9,7 @@ export const LoginModal = (props) =>{
     const [isLogin, setIsLogin] = useState(true);
     const { login, register } = useContext(userContext);
     const [loginData, setLoginData] = useState({
-        email:"1",
+        email:"",
         password:"",
         firstName:"",
         lastName:"",
@@ -23,8 +23,8 @@ export const LoginModal = (props) =>{
         else{
             register(loginData);
         }
-        window.location.href="/account";
     }
+    
     return(
         <Modal
         {...props}
