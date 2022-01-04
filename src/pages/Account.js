@@ -41,6 +41,7 @@ export class Account extends React.Component{
                                     <p className="g-text-small">Почта: {this.context.customer.email}</p>
                                 </Card.Body>
                                 <BrownButton text="Изменить" light/>
+                                <BrownButton text="Выйти" light onClick={() =>this.context.logOut()}/>
                             </Card>
                         </Col>
                         <Col md="8">

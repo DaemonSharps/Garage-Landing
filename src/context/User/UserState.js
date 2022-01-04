@@ -25,16 +25,18 @@ export const UserState = ({children}) => {
         setCookie("token", acessToken, "lax", 0, acessPayload.exp);
     }
 
-    const login = (email, password) =>{
+    const login = (email, password, href = "/account") =>{
         singIn(email, password)
         .then(result => {
             setTokenCookie(result.data.refreshToken, result.data.token);
             let acessPayload = parseToken(result.data.token);
             dispatch({type:LOGIN, payload:{ user: acessPayload, token: result.data.refreshToken }});
+            window.location.href = href;
         })
         .catch(e=>{
             console.log(e);
         });
+
     }
 
     const updateTokens = () =>{
@@ -58,6 +60,13 @@ export const UserState = ({children}) => {
         }
     }
 
+    const logOut = (href = "/") => {
+        setCookie("refreshToken", "", "lax", 0, 0);
+        setCookie("token", "", "lax", 0, 0);
+        dispatch({type:LOGIN, payload:{ user: {}, token: "" }});
+        window.location.href = href;
+    }
+
     const register = (formData) => dispatch({type:REGISTER, payload:formData});
 
     const addRecords = (filter) => dispatch({type:GET_CUSTOMER_RECORDS, payload:filter});
@@ -67,7 +76,7 @@ export const UserState = ({children}) => {
     return(
         <userContext.Provider value = 
         {{
-            login, register, addRecords, getCustomer, updateTokens,
+            login, register, addRecords, getCustomer, updateTokens, logOut,
             loading: state.loading,
             customer: state.customer,
             records: state.records,
