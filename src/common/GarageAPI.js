@@ -10,18 +10,18 @@ const apiInstance = axios.create({
   }
 });
 
-export async function GetRecords(params){
+export function GetRecords(params){
   let stringParams = `date=${params.date}&page=${params.page}&PerPage=${params.perPage}`;
   stringParams += params.dateFrom !== null 
   ? `&dateFrom=${params.dateFrom}`
   : '';
-  return await apiInstance.get("Records?" + stringParams);
+  return apiInstance.get("Records?" + stringParams);
 }
 
-export async function SetRecord(params){
-  return await apiInstance.post('Records',params);
+export function SetRecord(params){
+  return apiInstance.post('Records', params);
 }
 
-export async function SetCustomer(params){
-  return await apiInstance.post('Customers',params);
+export function SetCustomer(params){
+  return apiInstance.post('Customers', params); 
 }
