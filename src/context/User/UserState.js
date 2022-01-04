@@ -35,6 +35,7 @@ export const UserState = ({children}) => {
         })
         .catch(e=>{
             console.log(e);
+            logOut();
         });
 
     }
@@ -52,6 +53,7 @@ export const UserState = ({children}) => {
             })
             .catch(e =>{
                 console.log(e);
+                logOut();
             });
         }
         else{
