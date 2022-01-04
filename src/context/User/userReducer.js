@@ -1,27 +1,20 @@
+import { validateRefreshToken } from "../../common/authTokenHelpers";
 import { GET_CUSTOMER_RECORDS, LOGIN, REGISTER } from "./actionTypes"
-const users = [
-    {
-        id:1,
-        email:1,
-        firstName:"Тест",
-        secondName:"Первый",
-        lastName:"Отчество_1"
-    },
-    {
-        id:2,
-        email:2,
-        firstName:"Тест",
-        secondName:"Второй",
-        lastName:"Отчество_2"
-    }
-]
+
 const handlers = {
     [LOGIN]: (state, { payload }) =>{
-        let customer = users.filter(u => u.email === payload.email)[0];
+        let customer = {
+            id: 0,
+            email: payload.user.email,
+            firstName: payload.user.given_name,
+            secondName: payload.user.family_name,
+            lastName: payload.user.middle_name
+        };
+        let authorized = validateRefreshToken(payload.token) || false;
         return({
             ...state,
-            authorized:true,
-            customer
+            customer,
+            authorized
         });
     },
     [REGISTER]: (state, { payload }) =>{
