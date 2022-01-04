@@ -5,10 +5,13 @@ import { NotFound } from "./pages/404"
 import { Home } from "./pages/Home"
 import { Records } from "./pages/Records"
 import { Account } from "./pages/Account"
+import { getCookieValue } from "./common/helpers"
+import { validateRefreshToken } from "./common/authTokenHelpers"
 
 
 function App() {
-  const authorized = localStorage.authorized === "true";
+  let token = getCookieValue('refreshToken');
+  const authorized = validateRefreshToken(token);
   
   return (
     <UserState>
