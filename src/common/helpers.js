@@ -11,7 +11,8 @@ export const isNullOrEmptyString = (string) =>{
 export function setCookie(name, value, sameSite = "none", maxAgeSeconds = 0, expiresAtSeconds = 0){
     let cookie = `${name}=${value};`;
     cookie += `SameSite=${sameSite};`;
-
+    cookie += `domain=${window.location.hostname};`;
+    
     if(maxAgeSeconds !== 0){
         cookie += "max-age=" + (maxAgeSeconds * 1000).toString() + ";";
     }
