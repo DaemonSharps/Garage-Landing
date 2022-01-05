@@ -46,7 +46,7 @@ export class Account extends React.Component{
                         </Col>
                         <Col md="8">
                                 <Card className="p-3 my-1">
-                                    <Card.Title>Мои записи</Card.Title>
+                                    <p className="g-text-small">Мои записи</p>
                                 </Card>
                                 <Row onScroll={this.onRecordScroll} style={{overflow:'scroll', maxHeight:'750px'}}>
                                             <Col md="4">

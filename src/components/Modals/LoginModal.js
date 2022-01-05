@@ -41,7 +41,7 @@ export const LoginModal = (props) =>{
         centered
         >
             <Modal.Header closeButton> 
-                <Modal.Title id = "login-registration-modal">
+                <Modal.Title className='g-btn-text' id = "login-registration-modal">
                     Входъ в кабинетъ
                 </Modal.Title>
             </Modal.Header>

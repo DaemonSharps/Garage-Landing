@@ -70,7 +70,8 @@
 }
 
 .g-btn-text{
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
@@ -96,4 +97,14 @@ a.nav-link{
    &:focus{
    color:$brown-light !important;
    }
+}
+
+.accordion-header button{
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.input-group-text, .form-control, .form-label, .form-select{
+  font-size: 20px;
+  font-weight: 600;
 }
