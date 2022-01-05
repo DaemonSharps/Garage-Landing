@@ -14,7 +14,7 @@
   
 .secondaryText{
   @extend %main-text;
-  font-size: 35px;
+  font-size: 40px;
 }
 
 @mixin text-header($textColor, $afterColor) {
@@ -24,8 +24,10 @@
   margin-bottom: 1.5rem;
 
   div{
-    font-family: Imperial-Font;
+    font-family: Colatemta;
     font-size: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
     line-height: 60px;
     padding: 3px;
     color: $textColor !important;
@@ -68,20 +70,20 @@
 }
 
 .g-btn-text{
-  font-size: 18px;
+  font-size: 22px;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
 }
 
 .g-text-small{
-  font-size: 20px;
+  font-size: 26px;
   color: $brown;
 }
 
 .g-text-block{
   max-width: 800px;
-  padding: 20px;
+  padding: 26px;
   margin: auto;
 }
 
