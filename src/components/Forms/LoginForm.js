@@ -4,7 +4,7 @@ import { Form, Row, Col } from 'react-bootstrap'
 export const LoginForm = (props) =>{
 
     const [isLogin, setIsLogin] = useState(props.isLogin);
-    const [data, setData] = useState({});
+    const [data, setData] = useState(props.initialData);
 
     const onChange = (e) =>{
         const target = e.target;

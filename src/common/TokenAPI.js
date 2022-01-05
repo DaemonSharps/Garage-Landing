@@ -25,3 +25,15 @@ export function getNewTokens(refreshToken){
             token: refreshToken
         }});
 }
+
+export function signUp(email, password, firstName, lastName, middleName){
+    return tokenApi.post("user", null,{
+        params:{
+            email,
+            password,
+            firstName,
+            lastName,
+            middleName
+        }
+    })
+}

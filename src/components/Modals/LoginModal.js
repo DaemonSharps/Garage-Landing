@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Form, Modal } from 'react-bootstrap'
 import { LoginForm } from '../Forms/LoginForm'
 import { BrownButton } from '../Buttons'
 import { userContext } from '../../context/User/userContext'
+import { isNullOrEmptyString } from '../../common/helpers'
 
 export const LoginModal = (props) =>{
 
@@ -13,7 +14,11 @@ export const LoginModal = (props) =>{
         password:"",
         firstName:"",
         lastName:"",
-        secondName:""
+        secondName:"",
+        error:{
+            code:"",
+            message:""
+        }
     });
 
     const onLogin = () =>{
@@ -21,7 +26,10 @@ export const LoginModal = (props) =>{
             login(loginData.email, loginData.password);
         }
         else{
-            register(loginData);
+            let onError = (error) =>{
+                setLoginData({...loginData, error});
+            }
+            register(loginData, onError);
         }
     }
     
@@ -38,7 +46,10 @@ export const LoginModal = (props) =>{
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <LoginForm isLogin={isLogin} setFormData={setLoginData}/>
+                {isNullOrEmptyString(loginData.error.code)
+                ? ''
+                : <p className='invalid-feedback' style={{ display:'block'}}>{loginData.error.code + ": " + loginData.error.message}</p>}
+                <LoginForm isLogin={isLogin} setFormData={setLoginData} initialData={loginData}/>
             </Modal.Body>
             <Modal.Footer>
                 <BrownButton text={!isLogin ? "Входъ": "Регистрацъя"} onClick={() => setIsLogin(!isLogin)}/>

@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { LOGIN, REGISTER, GET_CUSTOMER_RECORDS, GET_CUSTOMER } from './actionTypes'
 import { userContext } from './userContext'
 import { userReducer } from './userReducer'
-import { getNewTokens, singIn } from '../../common/TokenAPI'
+import { getNewTokens, signUp, singIn } from '../../common/TokenAPI'
 import { getCookieValue, setCookie, isNullOrEmptyString } from '../../common/helpers'
 import { parseToken, validateRefreshToken } from '../../common/authTokenHelpers'
 
@@ -69,7 +69,26 @@ export const UserState = ({children}) => {
         window.location.href = href;
     }
 
-    const register = (formData) => dispatch({type:REGISTER, payload:formData});
+    const register = (user, onError, href = "/account") =>{
+        dispatch({type:REGISTER, payload:user});
+        signUp(user.email, user.password, user.firstName, user.secondName, user.lastName)
+        .then(responce => {
+            setTokenCookie(responce.data.refreshToken, responce.data.token);
+            let acessPayload = parseToken(responce.data.token);
+            dispatch({type:LOGIN, payload:{ user: acessPayload, token: responce.data.refreshToken }});
+            window.location.href = href;
+        })
+        .catch(e =>{
+            console.log(e);
+            if(e.response.status === 400){
+                onError(e.response.data);
+            }
+            else{
+                onError({ code:"UNKNOWN_ERROR", message:""});
+            }
+        });
+        
+    }
 
     const addRecords = (filter) => dispatch({type:GET_CUSTOMER_RECORDS, payload:filter});
 
