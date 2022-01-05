@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { LOGIN, REGISTER, GET_CUSTOMER_RECORDS, GET_CUSTOMER } from './actionTypes'
 import { userContext } from './userContext'
 import { userReducer } from './userReducer'
-import { getNewTokens, signUp, singIn } from '../../common/TokenAPI'
+import { getNewTokens, signUp, singIn, updateCustomer } from '../../common/TokenAPI'
 import { getCookieValue, setCookie, isNullOrEmptyString } from '../../common/helpers'
 import { parseToken, validateRefreshToken } from '../../common/authTokenHelpers'
 
@@ -90,6 +90,28 @@ export const UserState = ({children}) => {
         
     }
 
+    const customerUpdate = (firstName, middleName, lastName, href = "/", onError = (e) => console.log(e)) => {
+        let token = getCookieValue("token");
+        updateCustomer(token, firstName, middleName, lastName)
+        .then(result => {
+            console.log(result);
+            let token = result.data;
+            let payload = parseToken(token);
+            setCookie("token", token, "lax", 0, payload.exp);
+            dispatch({type:LOGIN, payload:{ user: payload, token: getCookieValue("refreshToken") }});
+            window.location.href = href;
+        })
+        .catch(e => {
+            console.log(e);
+            if(e.response?.status === 400){
+                onError(e.response.data);
+            }
+            else{
+                onError({ code:"UNKNOWN_ERROR", message:""});
+            }
+        })
+    }
+
     const addRecords = (filter) => dispatch({type:GET_CUSTOMER_RECORDS, payload:filter});
 
     const getCustomer = (email) => dispatch({type:GET_CUSTOMER, payload:email});
@@ -97,7 +119,7 @@ export const UserState = ({children}) => {
     return(
         <userContext.Provider value = 
         {{
-            login, register, addRecords, getCustomer, updateTokens, logOut,
+            login, register, addRecords, getCustomer, updateTokens, logOut, customerUpdate,
             loading: state.loading,
             customer: state.customer,
             records: state.records,

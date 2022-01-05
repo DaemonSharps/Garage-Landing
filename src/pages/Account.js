@@ -1,9 +1,10 @@
 import React from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
-import { BrownButton } from "../components/Buttons";
-import { Loader } from "../components/Loader";
+import { BrownButton } from "../components/Buttons"
+import { Loader } from "../components/Loader"
 import { PageSection } from "../components/PageSection"
-import { userContext } from "../context/User/userContext";
+import { userContext } from "../context/User/userContext"
+import { LoginModal } from "../components/Modals/LoginModal"
 
 export class Account extends React.Component{
 
@@ -11,8 +12,10 @@ export class Account extends React.Component{
         super(props);
         this.state ={
             records: Array(12).fill(0),
-            customer:{}
+            customer:{},
+            showUpdateModal: false
         }
+        this.setShowUpdateModal = this.setShowUpdateModal.bind(this);
     }
     static contextType = userContext;
 
@@ -26,11 +29,13 @@ export class Account extends React.Component{
         }
     };
 
+    setShowUpdateModal = (isShow) => this.setState({showUpdateModal: isShow});
+
     render(){
         return(
             <Container className="py-5">
+                <LoginModal mode="update" onHide = {this.setShowUpdateModal} show = {this.state.showUpdateModal}/>
                 <PageSection>
-    
                 <h2 className="headerText"><div>кабинетъ</div></h2>
                     <Row className="py-3">
                         <Col md="4">
@@ -40,7 +45,7 @@ export class Account extends React.Component{
                                     <p className="g-text-small">{this.context.customer.lastName}</p>
                                     <p className="g-text-small">Почта: {this.context.customer.email}</p>
                                 </Card.Body>
-                                <BrownButton text="Изменить" light/>
+                                <BrownButton text="Изменить ФИО" light onClick={() => this.setShowUpdateModal(true)}/>
                                 <BrownButton text="Выйти" light onClick={() =>this.context.logOut()}/>
                             </Card>
                         </Col>

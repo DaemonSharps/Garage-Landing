@@ -22,7 +22,7 @@ export const SiteNavbar = () =>{
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-            <LoginModal onHide = {setShowAuthModal} show = {showAuthModal}/>
+            <LoginModal mode="login" onHide = {setShowAuthModal} show = {showAuthModal}/>
         </Navbar>
         )
     }
