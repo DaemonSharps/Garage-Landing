@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Row, Col, InputGroup } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 
 export const LoginForm = (props) =>{
 
-    const [isLogin, setIsLogin] = useState(props.isLogin);
+    const [mode, setMode] = useState(props.mode);
     const [data, setData] = useState(props.initialData);
 
     const onChange = (e) =>{
@@ -15,36 +15,38 @@ export const LoginForm = (props) =>{
         props.setFormData(data);
     }
     useEffect(() => {
-        setIsLogin(props.isLogin);
-    }, [props.isLogin]);
+        setMode(props.mode);
+    }, [props.mode]);
 
         return(
             <Form>
-                <Row>
-                    <Col className="pt-2">
-                    <Form.Group className="mb-3">
-                        <Form.Label>Ваша-с почта</Form.Label>
-                        <Form.Control
-                        name = "email"
-                        type = "email"
-                        placeholder = "Введите адрессъ почтампта"
-                        onChange={onChange}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Секрътный ключъ</Form.Label>
-                        <Form.Control
-                        name = "password"
-                        type = "password"
-                        placeholder = "Секрiтный ключъ"
-                        onChange={onChange}
-                        />
-                    </Form.Group>
-                    </Col>
+                {mode === "login" || mode === "registration"
+                ?<Row>
+                <Col className="pt-2">
+                <Form.Group className="mb-3">
+                    <Form.Label>Ваша-с почта</Form.Label>
+                    <Form.Control
+                    name = "email"
+                    type = "email"
+                    placeholder = "Введите адрессъ почтампта"
+                    onChange={onChange}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Секрътный ключъ</Form.Label>
+                    <Form.Control
+                    name = "password"
+                    type = "password"
+                    placeholder = "Секрiтный ключъ"
+                    onChange={onChange}
+                    />
+                </Form.Group>
+                </Col>
                 </Row>
-                {isLogin
-                ?''
-                :<Row>
+                :""}
+                
+                {mode === "registration" || mode === "update"
+                ?<Row>
                 <Col>
                 <Form.Group className="mb-3">
                     <Form.Label>Имя</Form.Label>
@@ -74,7 +76,8 @@ export const LoginForm = (props) =>{
                     />
                 </Form.Group>
                 </Col>
-                </Row>}
+                </Row>
+                : ""}
             </Form>
     )
 }

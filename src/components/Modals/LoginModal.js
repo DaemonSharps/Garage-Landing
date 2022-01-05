@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form, Modal } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import { LoginForm } from '../Forms/LoginForm'
 import { BrownButton } from '../Buttons'
 import { userContext } from '../../context/User/userContext'
@@ -7,8 +7,8 @@ import { isNullOrEmptyString } from '../../common/helpers'
 
 export const LoginModal = (props) =>{
 
-    const [isLogin, setIsLogin] = useState(true);
-    const { login, register } = useContext(userContext);
+    const [mode, setMode] = useState(props.mode);
+    const { login, register, customerUpdate } = useContext(userContext);
     const [loginData, setLoginData] = useState({
         email:"",
         password:"",
@@ -22,14 +22,17 @@ export const LoginModal = (props) =>{
     });
 
     const onLogin = () =>{
-        if(isLogin){
+        let onError = (error) =>{
+            setLoginData({...loginData, error});
+        }
+        if(mode === "login"){
             login(loginData.email, loginData.password);
         }
-        else{
-            let onError = (error) =>{
-                setLoginData({...loginData, error});
-            }
+        else if(mode === "registration"){
             register(loginData, onError);
+        }
+        else if(mode === "update"){
+                customerUpdate(loginData.firstName, loginData.secondName, loginData.lastName, "/account", onError);
         }
     }
     
@@ -42,19 +45,21 @@ export const LoginModal = (props) =>{
         >
             <Modal.Header closeButton> 
                 <Modal.Title className='g-btn-text' id = "login-registration-modal">
-                    Входъ в кабинетъ
+                    {mode === "update" ? "Изменить ФИО": "Входъ в кабинетъ"}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {isNullOrEmptyString(loginData.error.code)
                 ? ''
                 : <p className='invalid-feedback' style={{ display:'block'}}>{loginData.error.code + ": " + loginData.error.message}</p>}
-                <LoginForm isLogin={isLogin} setFormData={setLoginData} initialData={loginData}/>
+                <LoginForm mode={mode} setFormData={setLoginData} initialData={loginData}/>
             </Modal.Body>
             <Modal.Footer>
-                <BrownButton text={!isLogin ? "Входъ": "Регистрацъя"} onClick={() => setIsLogin(!isLogin)}/>
-                <BrownButton light text={isLogin ? "Входъ": "Регистрацъя"} onClick={onLogin}/>
-            </Modal.Footer>
+                {mode !== "update" 
+                ? <BrownButton text={mode !== "login" ? "Входъ": "Регистрацъя"} onClick={() => setMode(mode === "login" ? "registration" : "login")}/> 
+                :''}
+                <BrownButton light text={"Окъ"} onClick={onLogin}/> 
+            </Modal.Footer> 
         </Modal>
     )
 }
